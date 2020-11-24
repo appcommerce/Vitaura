@@ -6,7 +6,7 @@ import com.example.vitaura.datasource.remote.RemoteDataSource
 import com.example.vitaura.datasource.remote.RetrofitProvider
 import com.example.vitaura.repository.IRepository
 import com.example.vitaura.repository.Repository
-import com.example.vitaura.ui.main.MainViewModel
+import com.example.vitaura.ui.viewmodel.MainViewModel
 import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
