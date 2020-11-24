@@ -11,7 +11,10 @@ class App: Application() {
         startKoin {
             androidLogger()
             androidContext(this@App)
-            koin.loadModules(listOf(networkModule))
+            koin.loadModules(listOf(
+                networkModule,
+                repositoryModule,
+                viewModelsModule))
             koin.createRootScope()
         }
     }
