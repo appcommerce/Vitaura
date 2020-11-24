@@ -1,5 +1,5 @@
 package com.example.vitaura.datasource.remote
 
-class RemoteDataSource: IRemote {
-    //Связь с сервером
+class RemoteDataSource(private val restDataSource: RetrofitProvider){
+
 }
