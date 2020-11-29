@@ -1,6 +1,7 @@
 package com.example.vitaura.datasource.remote
 
 import com.example.vitaura.data.ApiAction
+import com.example.vitaura.data.ApiPages
 import com.example.vitaura.data.ApiService
 import com.example.vitaura.data.ApiSlider
 import io.reactivex.Observable
@@ -16,4 +17,6 @@ interface IRestRequests {
     fun getServices():Observable<List<ApiService>>
     @GET("/rest_mobile/services/{id}")
     fun getServiceById(@Path("id")id: Int): Observable<ApiService>
+    @GET("/jsonapi/node/page")
+    fun getPages(): Observable<ApiPages>
 }

@@ -2,9 +2,10 @@ package com.example.vitaura.ui.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.vitaura.R
-import com.example.vitaura.data.Result
-import com.example.vitaura.pojo.Slider
+import android.util.Log
+import com.example.vitaura.data.Results
+import com.example.vitaura.databinding.ActivityMainBinding
+import com.example.vitaura.pojo.Page
 import com.example.vitaura.ui.viewmodel.MainViewModel
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -12,19 +13,20 @@ class MainActivity : AppCompatActivity() {
     private val mainViewModel: MainViewModel by viewModel()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        mainViewModel.getSlides().observe(this, {
+        val viewBind = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(viewBind.root)
+        mainViewModel.getPages().observe(this, {
             when(it){
-                is Result.Success<*> ->{
+                is Results.Success<*> ->{
                     @Suppress("UNCHECKED_CAST")
-                    val data = it.data as List<Slider>
-                    
+                    val data = it.data as List<Page>
+                    Log.w(MainActivity::class.simpleName, data[0].title ?: "olol")
                 }
-                is Result.Loading ->{
-
+                is Results.Loading ->{
+                    println("Loading")
                 }
-                is Result.Error ->{
-
+                is Results.Error ->{
+                    println(it.throwable?.message)
                 }
             }
         })

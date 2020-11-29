@@ -2,6 +2,7 @@ package com.example.vitaura.repository
 
 import com.example.vitaura.datasource.IDataSource
 import com.example.vitaura.pojo.Action
+import com.example.vitaura.pojo.Page
 import com.example.vitaura.pojo.Service
 import com.example.vitaura.pojo.Slider
 import io.reactivex.Observable
@@ -57,4 +58,12 @@ class Repository(private val remoteDataSource: IDataSource): IRepository {
                 service.typeWeight,
                 service.weight)
         }
+
+    override fun getPages(): Observable<List<Page>> = remoteDataSource.getPages()
+            .map { page->
+                return@map page.pages.map {
+                    Page(it.data?.title,
+                            it.data?.body?.text)
+                }
+            }
 }
