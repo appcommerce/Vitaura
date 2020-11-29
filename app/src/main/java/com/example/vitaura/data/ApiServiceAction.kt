@@ -3,7 +3,7 @@ package com.example.vitaura.data
 
 import com.google.gson.annotations.SerializedName
 
-data class ApiAction(
+data class ApiServiceAction(
     @SerializedName("body")
     val body: String?,
     @SerializedName("field_image")

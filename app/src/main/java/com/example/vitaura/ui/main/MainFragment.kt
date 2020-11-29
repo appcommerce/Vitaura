@@ -9,7 +9,7 @@ import com.example.vitaura.databinding.FragmentMainBinding
 import com.example.vitaura.extensions.viewBinding
 import com.example.vitaura.pojo.Slider
 import com.example.vitaura.ui.base.BaseFragment
-import com.example.vitaura.ui.base.MainActivity
+import com.example.vitaura.ui.base.BaseActivity
 import com.example.vitaura.viewmodel.MainViewModel
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -40,11 +40,11 @@ class MainFragment: BaseFragment(R.layout.fragment_main) {
     }
 
     override fun showLoading(){
-        TODO("NOT YET IMPLEMENTED")
+
     }
 
     override fun hideLoading(){
-        TODO("NOT YET IMPLEMENTED")
+
     }
 
     override fun handleError(error: Throwable?) {
@@ -54,6 +54,6 @@ class MainFragment: BaseFragment(R.layout.fragment_main) {
 
     private fun showSlides(result: List<Slider>) {
         hideLoading()
-        Log.w(MainActivity::class.simpleName, result[0].title ?: "olol")
+        Log.w(BaseActivity::class.simpleName, result[0].title ?: "olol")
     }
 }

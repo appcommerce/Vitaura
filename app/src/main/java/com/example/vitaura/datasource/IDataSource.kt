@@ -1,15 +1,13 @@
 package com.example.vitaura.datasource
 
-import com.example.vitaura.data.ApiAction
-import com.example.vitaura.data.ApiPages
-import com.example.vitaura.data.ApiService
-import com.example.vitaura.data.ApiSlider
+import com.example.vitaura.data.*
 import io.reactivex.Observable
 
 interface IDataSource {
     fun getSlides(): Observable<List<ApiSlider>>
-    fun getActions(): Observable<List<ApiAction>>
+    fun getActions(): Observable<List<ApiServiceAction>>
     fun getServices(): Observable<List<ApiService>>
     fun getServiceById(id: Int): Observable<ApiService>
     fun getPages(): Observable<ApiPages>
+    fun getNodeDoctors(): Observable<ApiDoctors>
 }

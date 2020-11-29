@@ -1,10 +1,7 @@
 package com.example.vitaura.repository
 
 import com.example.vitaura.datasource.IDataSource
-import com.example.vitaura.pojo.Action
-import com.example.vitaura.pojo.Page
-import com.example.vitaura.pojo.Service
-import com.example.vitaura.pojo.Slider
+import com.example.vitaura.pojo.*
 import io.reactivex.Observable
 
 class Repository(private val remoteDataSource: IDataSource): IRepository {
@@ -61,9 +58,25 @@ class Repository(private val remoteDataSource: IDataSource): IRepository {
 
     override fun getPages(): Observable<List<Page>> = remoteDataSource.getPages()
             .map { page->
-                return@map page.pages.map {
+                return@map page.pages?.map {
                     Page(it.data?.title,
                             it.data?.body?.text)
                 }
             }
+
+    override fun getNodeDoctors(): Observable<List<NodeDoctor>> = remoteDataSource.getNodeDoctors()
+        .map {
+            return@map it.data?.map { doctor->
+                NodeDoctor(doctor.attributes?.body?.text,
+                           doctor.attributes?.price,
+                           doctor.attributes?.education?.text,
+                           doctor.attributes?.information?.text,
+                           doctor.attributes?.post,
+                           doctor.attributes?.shortDescription?.text,
+                           doctor.attributes?.specialization?.text,
+                           doctor.attributes?.title,
+                           doctor.attributes?.weight,
+                           doctor.relations?.services?.service?.map { service-> service.id })
+            }
+        }
 }
