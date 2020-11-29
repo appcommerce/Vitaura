@@ -79,4 +79,13 @@ class Repository(private val remoteDataSource: IDataSource): IRepository {
                            doctor.relations?.services?.service?.map { service-> service.id })
             }
         }
+
+    override fun getGallery(): Observable<List<Gallery>> = remoteDataSource.getGallery()
+        .map {
+            it.galleries?.map { gallery->
+                Gallery(gallery.attributes?.title,
+                    gallery.relationship?.galleryImageField?.files?.map { image->
+                    Image(image.id, image.attributes?.uri?.url) })
+            }
+        }
 }

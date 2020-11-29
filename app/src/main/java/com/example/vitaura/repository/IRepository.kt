@@ -10,4 +10,5 @@ interface IRepository {
     fun getServiceById(id: Int): Observable<Service>
     fun getPages(): Observable<List<Page>>
     fun getNodeDoctors(): Observable<List<NodeDoctor>>
+    fun getGallery(): Observable<List<Gallery>>
 }

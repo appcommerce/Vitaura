@@ -10,4 +10,5 @@ interface IDataSource {
     fun getServiceById(id: Int): Observable<ApiService>
     fun getPages(): Observable<ApiPages>
     fun getNodeDoctors(): Observable<ApiDoctors>
+    fun getGallery(): Observable<ApiGalleries>
 }

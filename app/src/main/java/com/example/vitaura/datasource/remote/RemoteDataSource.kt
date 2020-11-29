@@ -11,4 +11,5 @@ class RemoteDataSource(private val restDataSource: RetrofitProvider): IDataSourc
     override fun getServiceById(id: Int): Observable<ApiService> = restDataSource.getService().getServiceById(id)
     override fun getPages(): Observable<ApiPages> = restDataSource.getService().getPages()
     override fun getNodeDoctors(): Observable<ApiDoctors> = restDataSource.getService().getNodeDoctors()
+    override fun getGallery(): Observable<ApiGalleries> = restDataSource.getService().getGallery()
 }

@@ -18,5 +18,6 @@ interface IRestRequests {
     fun getPages(): Observable<ApiPages>
     @GET("/jsonapi/node/doctors")
     fun getNodeDoctors(): Observable<ApiDoctors>
-    
+    @GET("/jsonapi/node/gallery")
+    fun getGallery(): Observable<ApiGalleries>
 }
