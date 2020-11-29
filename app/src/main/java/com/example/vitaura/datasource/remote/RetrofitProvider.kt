@@ -21,6 +21,6 @@ class RetrofitProvider(private val interceptor: BaseInterceptor) {
             .baseUrl(baseUrl)
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            .client(createOkHttpClient(interceptor))
+            //.client(createOkHttpClient(interceptor))
             .build()
 }
