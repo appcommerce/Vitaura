@@ -20,4 +20,6 @@ interface IRestRequests {
     fun getNodeDoctors(): Observable<ApiDoctors>
     @GET("/jsonapi/node/gallery")
     fun getGallery(): Observable<ApiGalleries>
+    @GET("/rest/do-i-posle")
+    fun getChangeGallery(): Observable<List<ApiChangeFile>>
 }
