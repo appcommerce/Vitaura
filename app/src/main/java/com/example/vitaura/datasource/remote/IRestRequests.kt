@@ -22,4 +22,6 @@ interface IRestRequests {
     fun getGallery(): Observable<ApiGalleries>
     @GET("/rest/do-i-posle")
     fun getChangeGallery(): Observable<List<ApiChangeFile>>
+    @GET("/get_doctors")
+    fun getDoctors():Observable<List<ApiCurrentDoctor>>
 }

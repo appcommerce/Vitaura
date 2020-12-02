@@ -93,4 +93,14 @@ class Repository(private val remoteDataSource: IDataSource): IRepository {
         .map {
             it.map { file-> ChangeFile(file.url, file.title) }
         }
+
+    override fun getDoctors(): Observable<List<CurrentDoctor>> = remoteDataSource.getDoctors()
+            .map {
+                return@map it.map { doctor-> CurrentDoctor(doctor.description,
+                        doctor.miniDescription,
+                        doctor.name,
+                        doctor.photoName,
+                        doctor.spec)
+                }
+            }
 }
