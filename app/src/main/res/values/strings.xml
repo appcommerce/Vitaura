@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Vitaura</string>
+    <string name="message_1">Услуги</string>
+    <string name="message_2">Специалисты</string>
+    <string name="message_3">Цены</string>
+    <string name="message_4">Отзывы</string>
+    <string name="message_5">Москва, Большой Тишинский пер., 10 стр 1</string>
 </resources>

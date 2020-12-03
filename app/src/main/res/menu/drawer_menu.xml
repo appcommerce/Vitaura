@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/main"
+        android:title="Главная"/>
+    <item android:id="@+id/about"
+        android:title="О нас"/>
+    <item android:id="@+id/services"
+        android:title="Услуги"/>
+    <item android:id="@+id/doctors"
+        android:title="Специалисты"/>
+    <item android:id="@+id/prices"
+        android:title="Цены"/>
+    <item android:id="@+id/special"
+        android:title="Акции"/>
+    <item android:id="@+id/media"
+        android:title="Фото и видео"/>
+    <item android:id="@+id/reviews"
+        android:title="Отзывы"/>
+    <item android:id="@+id/contacts"
+        android:title="Контакты"/>
+</menu>
