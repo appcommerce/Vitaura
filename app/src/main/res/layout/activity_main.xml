@@ -34,6 +34,7 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:background="@color/white"
+                app:titleTextColor="@color/titleColor"
                 android:layout_height="?attr/actionBarSize" />
 
         </com.google.android.material.appbar.AppBarLayout>
@@ -61,5 +62,6 @@
         android:paddingBottom="100dp"
         android:clipToPadding="false"
         android:fitsSystemWindows="true"
+        app:headerLayout="@layout/drawer_header"
         app:menu="@menu/drawer_menu"/>
 </androidx.drawerlayout.widget.DrawerLayout>

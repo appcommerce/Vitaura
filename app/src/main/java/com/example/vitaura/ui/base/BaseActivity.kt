@@ -2,6 +2,7 @@ package com.example.vitaura.ui.base
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
@@ -18,8 +19,12 @@ class BaseActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         super.onCreate(savedInstanceState)
         setContentView(viewBind.root)
         setSupportActionBar(viewBind.toolbar)
-        supportActionBar?.title = ""
-        val drawerToggle = ActionBarDrawerToggle(this, viewBind.drawerLayout, viewBind.toolbar, R.string.message_1, R.string.message_1)
+        supportActionBar?.title = "Главная"
+        val drawerToggle = ActionBarDrawerToggle(this,
+                viewBind.drawerLayout,
+                viewBind.toolbar,
+                R.string.open_hamburger,
+                R.string.close_hamburger)
         viewBind.drawerLayout.addDrawerListener(drawerToggle)
         drawerToggle.syncState()
         viewBind.navigator.setNavigationItemSelectedListener(this)
@@ -29,12 +34,33 @@ class BaseActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
+
         viewBind.drawerLayout.closeDrawer(GravityCompat.START)
         return true
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return super.onOptionsItemSelected(item)
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.toolbar_menu, menu)
+        return true
+    }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when(item.itemId){
+            R.id.back -> {
+                supportFragmentManager
+                        .popBackStack()
+                true
+            }
+            else -> false
+        }
+    }
+
+    override fun onBackPressed() {
+        if (viewBind.drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            viewBind.drawerLayout.closeDrawer(GravityCompat.START)
+        } else {
+            supportFragmentManager
+                    .popBackStack()
+        }
     }
 }
