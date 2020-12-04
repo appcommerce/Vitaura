@@ -1,5 +1,6 @@
 package com.example.vitaura.datasource.remote
 
+import com.example.vitaura.extensions.Constants
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -8,7 +9,7 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 class RetrofitProvider(private val interceptor: BaseInterceptor) {
-    private val baseUrl = "https://vitaura-clinic.ru"
+    private val baseUrl = Constants.SERVER_URL
     fun getService(): IRestRequests = getRetrofit(interceptor)
             .create(IRestRequests::class.java)
     private fun createOkHttpClient(interceptor: Interceptor): OkHttpClient {

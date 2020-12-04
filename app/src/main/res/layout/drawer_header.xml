@@ -19,6 +19,7 @@
         android:drawableEnd="@drawable/next_button_white"
         android:paddingEnd="20dp"
         android:text="@string/message_15"
+        android:fontFamily="sans-serif"
         android:textColor="@color/white"
         android:textSize="14sp"/>
 </LinearLayout>
