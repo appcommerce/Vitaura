@@ -1,8 +1,6 @@
 package com.example.vitaura.ui.main
 
-import android.text.Html
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.core.text.HtmlCompat
 import com.example.vitaura.databinding.ItemSlideBinding

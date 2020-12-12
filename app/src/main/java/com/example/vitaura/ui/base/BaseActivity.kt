@@ -8,10 +8,13 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import com.example.vitaura.R
 import com.example.vitaura.databinding.ActivityMainBinding
+import com.example.vitaura.ui.feedback.FeedbackFragment
 import com.example.vitaura.ui.main.MainFragment
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 
-class BaseActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class BaseActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,
+    BottomNavigationView.OnNavigationItemSelectedListener {
 
     private val viewBind by lazy { ActivityMainBinding.inflate(layoutInflater) }
 
@@ -28,15 +31,24 @@ class BaseActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         viewBind.drawerLayout.addDrawerListener(drawerToggle)
         drawerToggle.syncState()
         viewBind.navigator.setNavigationItemSelectedListener(this)
+        viewBind.bottomMenuNav.setOnNavigationItemSelectedListener(this)
         supportFragmentManager.beginTransaction()
             .replace(R.id.main_container, MainFragment())
             .commit()
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-
         viewBind.drawerLayout.closeDrawer(GravityCompat.START)
-        return true
+        return when(item.itemId){
+            R.id.reviews ->{
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.main_container, FeedbackFragment())
+                    .addToBackStack(null)
+                    .commit()
+                true
+            }
+            else -> false
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -54,6 +66,8 @@ class BaseActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             else -> false
         }
     }
+
+
 
     override fun onBackPressed() {
         if (viewBind.drawerLayout.isDrawerOpen(GravityCompat.START)) {

@@ -110,4 +110,9 @@ class Repository(private val remoteDataSource: IDataSource): IRepository {
                     Feedback(data.attributes?.title, data.attributes?.text?.text)
                 }
             }
+
+    override fun getPopularProblems(): Observable<List<PopularProblems>> = remoteDataSource.getPopularProblems()
+            .map {
+                return@map it.map { problem-> PopularProblems(problem.url, problem.services, problem.title) }
+            }
 }

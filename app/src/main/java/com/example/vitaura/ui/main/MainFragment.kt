@@ -1,21 +1,21 @@
 package com.example.vitaura.ui.main
 
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.example.vitaura.R
 import com.example.vitaura.pojo.Results
 import com.example.vitaura.databinding.FragmentMainBinding
-import com.example.vitaura.extensions.ViewPagerTabAdapter
 import com.example.vitaura.extensions.viewBinding
 import com.example.vitaura.pojo.Slider
 import com.example.vitaura.ui.base.BaseFragment
 import com.example.vitaura.ui.feedback.FeedbackFragment
 import com.example.vitaura.ui.info.InfoFragment
 import com.example.vitaura.viewmodel.MainViewModel
-import com.google.android.material.tabs.TabLayoutMediator
+import com.google.android.material.tabs.TabLayout
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class MainFragment: BaseFragment(R.layout.fragment_main) {
+class MainFragment: BaseFragment(R.layout.fragment_main), TabLayout.OnTabSelectedListener {
     private val mainViewModel: MainViewModel by viewModel()
     private val observeSlides = Observer<Results<List<Slider>>> { handleSlides(it) }
     private val layout by viewBinding(FragmentMainBinding::bind)
@@ -23,7 +23,6 @@ class MainFragment: BaseFragment(R.layout.fragment_main) {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         initSlider()
-        initViewPager()
         initTabs()
         mainViewModel.getSlides().observe(this, observeSlides)
     }
@@ -36,21 +35,18 @@ class MainFragment: BaseFragment(R.layout.fragment_main) {
     }
 
     private fun initTabs(){
-        layout.viewPager.requestDisallowInterceptTouchEvent(true)
-        TabLayoutMediator(layout.mainTab, layout.viewPager) { tab, position ->
-            when(position){
-                0 -> tab.text = "Информация"
-                1 -> tab.text = "Отзывы"
-            }
-        }.attach()
+        routeTabFragment(InfoFragment())
+        layout.mainTab.addTab(layout.mainTab.newTab().setText("Информация"))
+        layout.mainTab.addTab(layout.mainTab.newTab().setText("Отзывы"))
+        layout.mainTab.addOnTabSelectedListener(this)
     }
 
-    private fun initViewPager(){
-        layout.viewPager.offscreenPageLimit = 1
-        val adapter = ViewPagerTabAdapter(this)
-        adapter.addFragment(InfoFragment())
-        adapter.addFragment(FeedbackFragment())
-        layout.viewPager.adapter = adapter
+    /**
+     * Маршрутизация фрагментов вкладок
+     */
+    private fun routeTabFragment(fragment: Fragment){
+        childFragmentManager.beginTransaction().replace(R.id.tab_container, fragment)
+            .commit()
     }
 
     private fun handleSlides(result: Results<List<Slider>>){
@@ -82,4 +78,22 @@ class MainFragment: BaseFragment(R.layout.fragment_main) {
     private fun showSlides(result: List<Slider>) {
         sliderAdapter?.addSlides(result)
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        layout.mainTab.removeOnTabSelectedListener(this)
+    }
+
+    override fun onTabSelected(tab: TabLayout.Tab?) {
+        when(tab?.position){
+            0 ->{
+                routeTabFragment(InfoFragment())
+            }
+            1 ->{
+                routeTabFragment(FeedbackFragment())
+            }
+        }
+    }
+    override fun onTabUnselected(tab: TabLayout.Tab?) {}
+    override fun onTabReselected(tab: TabLayout.Tab?) {}
 }

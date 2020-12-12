@@ -14,4 +14,5 @@ interface IRepository {
     fun getChangeGallery(): Observable<List<ChangeFile>>
     fun getDoctors(): Observable<List<CurrentDoctor>>
     fun getFeedback(): Observable<List<Feedback>>
+    fun getPopularProblems(): Observable<List<PopularProblems>>
 }

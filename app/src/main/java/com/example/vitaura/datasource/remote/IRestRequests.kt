@@ -26,4 +26,6 @@ interface IRestRequests {
     fun getDoctors():Observable<List<ApiCurrentDoctor>>
     @GET("/jsonapi/node/patients")
     fun getFeedback(): Observable<ApiPatients>
+    @GET("/rest/problems/popular_front")
+    fun getPopularProblems(): Observable<List<ApiPopularProblems>>
 }

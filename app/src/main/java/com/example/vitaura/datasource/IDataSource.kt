@@ -14,4 +14,5 @@ interface IDataSource {
     fun getChangeGallery(): Observable<List<ApiChangeFile>>
     fun getDoctors():Observable<List<ApiCurrentDoctor>>
     fun getFeedback(): Observable<ApiPatients>
+    fun getPopularProblems(): Observable<List<ApiPopularProblems>>
 }
