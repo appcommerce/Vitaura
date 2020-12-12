@@ -103,4 +103,11 @@ class Repository(private val remoteDataSource: IDataSource): IRepository {
                         doctor.spec)
                 }
             }
+
+    override fun getFeedback(): Observable<List<Feedback>> = remoteDataSource.getFeedback()
+            .map {
+                return@map it.data?.map { data->
+                    Feedback(data.attributes?.title, data.attributes?.text?.text)
+                }
+            }
 }

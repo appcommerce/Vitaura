@@ -1,14 +1,14 @@
-package com.example.vitaura.ui.main
+package com.example.vitaura.ui.info
 
 import android.os.Bundle
 import android.view.View
 import com.example.vitaura.R
-import com.example.vitaura.databinding.FragmentFeedbackBinding
+import com.example.vitaura.databinding.FragmentAboutBinding
 import com.example.vitaura.extensions.viewBinding
 import com.example.vitaura.ui.base.BaseFragment
 
-class FeedbackFragment: BaseFragment(R.layout.fragment_feedback) {
-    val layout by viewBinding(FragmentFeedbackBinding::bind)
+class InfoFragment: BaseFragment(R.layout.fragment_about) {
+    val layout by viewBinding(FragmentAboutBinding::bind)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -20,10 +20,6 @@ class FeedbackFragment: BaseFragment(R.layout.fragment_feedback) {
     }
 
     override fun hideLoading() {
-
-    }
-
-    override fun handleError(error: Throwable?) {
 
     }
 }

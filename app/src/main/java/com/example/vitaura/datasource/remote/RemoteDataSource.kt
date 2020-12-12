@@ -14,4 +14,5 @@ class RemoteDataSource(private val restDataSource: RetrofitProvider): IDataSourc
     override fun getGallery(): Observable<ApiGalleries> = restDataSource.getService().getGallery()
     override fun getChangeGallery(): Observable<List<ApiChangeFile>> = restDataSource.getService().getChangeGallery()
     override fun getDoctors(): Observable<List<ApiCurrentDoctor>> = restDataSource.getService().getDoctors()
+    override fun getFeedback(): Observable<ApiPatients> = restDataSource.getService().getFeedback()
 }
