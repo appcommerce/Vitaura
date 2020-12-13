@@ -1,4 +1,8 @@
 package com.example.vitaura.ui.mail
 
-class CallbackFragment {
+import androidx.fragment.app.Fragment
+import com.example.vitaura.R
+
+class CallbackFragment: Fragment(R.layout.fragment_callback) {
+
 }

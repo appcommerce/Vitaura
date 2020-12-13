@@ -70,6 +70,6 @@ dependencies {
     //Парсинг сложных HTML ресурсов
     implementation 'org.jsoup:jsoup:1.13.1'
 
-    //Отслеживание утечек памяти
-    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.5'
+    //Шлём почту
+    implementation 'com.github.nedimf:maildroid:v0.0.4-relase'
 }

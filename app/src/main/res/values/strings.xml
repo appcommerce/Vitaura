@@ -19,4 +19,14 @@
     <string name="message_15">Запись на приём</string>
     <string name="message_16">Назад</string>
     <string name="message_17">Популярные процедуры</string>
+    <string name="message_18">Ваше имя</string>
+    <string name="message_20">Отзыв</string>
+    <string name="message_19">Номер телефона</string>
+    <string name="message_21">Обязательные поля</string>
+    <string name="message_22">Отправить</string>
+    <string name="message_23">Удобная дата и время приема</string>
+    <string name="message_24">Email</string>
+    <string name="message_25">Нажимая на кнопку ниже, вы даёте согласие на
+        обработку персональных данных и соглашаетесь
+        с Политикой Конфиденциальности</string>
 </resources>
