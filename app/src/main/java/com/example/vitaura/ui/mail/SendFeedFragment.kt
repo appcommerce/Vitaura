@@ -35,7 +35,9 @@ class SendFeedFragment: BaseFragment(R.layout.fragment_send) {
         override val timeout: Long = 3000
         override fun onSuccess() {
             hideLoading()
-
+            requireActivity().supportFragmentManager
+                    .beginTransaction()
+                    .replace(R.id.main_container, SuccessFragment())
         }
         override fun onFail(errorMessage: String) {
             hideLoading()

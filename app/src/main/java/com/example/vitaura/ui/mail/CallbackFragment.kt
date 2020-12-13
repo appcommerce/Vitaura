@@ -29,7 +29,7 @@ class CallbackFragment: BaseFragment(R.layout.fragment_callback) {
                     "\n${layout.incCall.emailCallback}" +
                     "\n${layout.incCall.calendarCallback}" +
                     "\n${layout.incCall.commentCallback}"
-            SMTPClient.sendMessage(callback, "Новая запись на приём", sendCallback)
+            SMTPClient.sendMessage(callback, getString(R.string.message_28), sendCallback)
         }
     }
 
@@ -37,7 +37,9 @@ class CallbackFragment: BaseFragment(R.layout.fragment_callback) {
         override val timeout: Long = 3000
         override fun onSuccess() {
             hideLoading()
-
+            requireActivity().supportFragmentManager
+                    .beginTransaction()
+                    .replace(R.id.main_container, SuccessFragment())
         }
         override fun onFail(errorMessage: String) {
             hideLoading()
