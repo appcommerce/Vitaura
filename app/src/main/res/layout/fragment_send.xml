@@ -19,6 +19,7 @@
         app:cardCornerRadius="14dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <include layout="@layout/form_feedback"/>
+        <include android:id="@+id/incSend"
+            layout="@layout/form_feedback"/>
     </androidx.cardview.widget.CardView>
 </LinearLayout>
