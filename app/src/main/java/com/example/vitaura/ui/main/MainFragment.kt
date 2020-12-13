@@ -24,7 +24,7 @@ class MainFragment: BaseFragment(R.layout.fragment_main), TabLayout.OnTabSelecte
         super.onActivityCreated(savedInstanceState)
         initSlider()
         initTabs()
-        mainViewModel.getSlides().observe(this, observeSlides)
+        mainViewModel.getSlides().observe(viewLifecycleOwner, observeSlides)
     }
 
     private fun initSlider(){

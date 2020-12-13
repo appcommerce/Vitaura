@@ -24,8 +24,8 @@ class InfoFragment: BaseFragment(R.layout.fragment_info), OnProblemClickListener
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initProblemsSlider()
-        mainViewModel.getPopularProblems().observe(this, problemsObserver)
-        mainViewModel.getPages().observe(this, infoObserver)
+        mainViewModel.getPopularProblems().observe(viewLifecycleOwner, problemsObserver)
+        mainViewModel.getPages().observe(viewLifecycleOwner, infoObserver)
         layout.incProblems.btnLeftSlide.setOnClickListener {
             layout.incProblems.rvPopular.slideToPreviousPosition()
         }

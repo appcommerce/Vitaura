@@ -23,7 +23,7 @@ class FeedbackFragment: BaseFragment(R.layout.fragment_feedback) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initFeedbackList()
-        mainViewModel.getFeedback().observe(this, feedsObserver)
+        mainViewModel.getFeedback().observe(viewLifecycleOwner, feedsObserver)
     }
 
     /**
