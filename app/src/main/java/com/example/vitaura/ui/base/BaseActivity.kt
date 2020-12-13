@@ -5,10 +5,12 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.widget.AppCompatButton
 import androidx.core.view.GravityCompat
 import com.example.vitaura.R
 import com.example.vitaura.databinding.ActivityMainBinding
 import com.example.vitaura.ui.feedback.FeedbackFragment
+import com.example.vitaura.ui.mail.MessageFragment
 import com.example.vitaura.ui.main.MainFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
@@ -32,6 +34,17 @@ class BaseActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         drawerToggle.syncState()
         viewBind.navigator.setNavigationItemSelectedListener(this)
         viewBind.bottomMenuNav.setOnNavigationItemSelectedListener(this)
+        viewBind.navigator
+            .getHeaderView(0)
+            .findViewById<AppCompatButton>(R.id.callback_drawer_btn)
+            .setOnClickListener {
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.main_container, MessageFragment())
+                    .addToBackStack(null)
+                    .commit()
+                viewBind.drawerLayout.closeDrawer(GravityCompat.START)
+
+            }
         supportFragmentManager.beginTransaction()
             .replace(R.id.main_container, MainFragment())
             .commit()

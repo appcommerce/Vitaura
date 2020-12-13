@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/ic_logo"/>
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/callback_drawer_btn"
         android:layout_width="225dp"
         android:layout_height="44dp"
         android:layout_marginTop="20dp"

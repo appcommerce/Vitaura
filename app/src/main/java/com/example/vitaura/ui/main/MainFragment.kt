@@ -1,11 +1,13 @@
 package com.example.vitaura.ui.main
 
 import android.os.Bundle
+import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.example.vitaura.R
 import com.example.vitaura.pojo.Results
 import com.example.vitaura.databinding.FragmentMainBinding
+import com.example.vitaura.extensions.Router
 import com.example.vitaura.extensions.viewBinding
 import com.example.vitaura.pojo.Slider
 import com.example.vitaura.ui.base.BaseFragment
@@ -20,6 +22,7 @@ class MainFragment: BaseFragment(R.layout.fragment_main), TabLayout.OnTabSelecte
     private val observeSlides = Observer<Results<List<Slider>>> { handleSlides(it) }
     private val layout by viewBinding(FragmentMainBinding::bind)
     private var sliderAdapter: MainSliderAdapter? = null
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         initSlider()
@@ -35,18 +38,10 @@ class MainFragment: BaseFragment(R.layout.fragment_main), TabLayout.OnTabSelecte
     }
 
     private fun initTabs(){
-        routeTabFragment(InfoFragment())
+        Router.routeTabFragment(this, InfoFragment(), R.id.tab_container)
         layout.mainTab.addTab(layout.mainTab.newTab().setText("Информация"))
         layout.mainTab.addTab(layout.mainTab.newTab().setText("Отзывы"))
         layout.mainTab.addOnTabSelectedListener(this)
-    }
-
-    /**
-     * Маршрутизация фрагментов вкладок
-     */
-    private fun routeTabFragment(fragment: Fragment){
-        childFragmentManager.beginTransaction().replace(R.id.tab_container, fragment)
-            .commit()
     }
 
     private fun handleSlides(result: Results<List<Slider>>){
@@ -87,10 +82,10 @@ class MainFragment: BaseFragment(R.layout.fragment_main), TabLayout.OnTabSelecte
     override fun onTabSelected(tab: TabLayout.Tab?) {
         when(tab?.position){
             0 ->{
-                routeTabFragment(InfoFragment())
+                Router.routeTabFragment(this, InfoFragment(), R.id.tab_container)
             }
             1 ->{
-                routeTabFragment(FeedbackFragment())
+                Router.routeTabFragment(this, FeedbackFragment(), R.id.tab_container)
             }
         }
     }
