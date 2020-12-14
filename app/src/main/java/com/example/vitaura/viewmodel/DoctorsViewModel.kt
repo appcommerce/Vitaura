@@ -11,6 +11,7 @@ import io.reactivex.rxkotlin.subscribeBy
 
 class DoctorsViewModel(private val repository: IRepository): BaseViewModel() {
     private val doctors = MutableLiveData<Results<List<NodeDoctor>>>()
+    private val doctor = MutableLiveData<Results<NodeDoctor>>()
 
     fun getDoctors(): LiveData<Results<List<NodeDoctor>>> {
         repository.getNodeDoctors()
@@ -27,5 +28,22 @@ class DoctorsViewModel(private val repository: IRepository): BaseViewModel() {
                         }
                 ).addTo(subscription)
         return doctors
+    }
+
+    fun getDoctor(id: String): LiveData<Results<NodeDoctor>> {
+        repository.getDoctor(id)
+                .subscribeOn(scheduler.io())
+                .observeOn(scheduler.ui())
+                .doOnSubscribe {
+                    doctor.value = Results.Loading(null)
+                }.subscribeBy(
+                        onNext = {
+                            doctor.value = Results.Success(it)
+                        },
+                        onError = {
+                            doctor.value = Results.Error(it)
+                        }
+                ).addTo(subscription)
+        return doctor
     }
 }
