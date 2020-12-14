@@ -1,6 +1,7 @@
 package com.example.vitaura.pojo
 
-data class NodeDoctor(val body: String?,
+data class NodeDoctor(val id: String?,
+                      val body: String?,
                       val price: String?,
                       val education: String?,
                       val information: String?,
@@ -9,4 +10,4 @@ data class NodeDoctor(val body: String?,
                       val specialization: String?,
                       val title: String?,
                       val weight: Int?,
-                      val serviceId: List<Int?>?)
+                      val serviceId: List<String?>?)

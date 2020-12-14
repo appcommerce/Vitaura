@@ -18,12 +18,12 @@ interface IRestRequests {
     fun getPages(): Observable<ApiPages>
     @GET("/jsonapi/node/doctors")
     fun getNodeDoctors(): Observable<ApiDoctors>
+    @GET("/jsonapi/node/doctors/{id}")
+    fun getDoctor(@Path("id")id: String):Observable<ApiCurrentDoctor>
     @GET("/jsonapi/node/gallery")
     fun getGallery(): Observable<ApiGalleries>
     @GET("/rest/do-i-posle")
     fun getChangeGallery(): Observable<List<ApiChangeFile>>
-    @GET("/get_doctors")
-    fun getDoctors():Observable<List<ApiCurrentDoctor>>
     @GET("/jsonapi/node/patients")
     fun getFeedback(): Observable<ApiPatients>
     @GET("/rest/problems/popular_front")

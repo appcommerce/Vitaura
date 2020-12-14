@@ -9,7 +9,7 @@ import com.example.vitaura.R
 import com.example.vitaura.databinding.FragmentDoctorsBinding
 import com.example.vitaura.extensions.Router
 import com.example.vitaura.extensions.viewBinding
-import com.example.vitaura.pojo.CurrentDoctor
+import com.example.vitaura.pojo.NodeDoctor
 import com.example.vitaura.pojo.Results
 import com.example.vitaura.ui.base.BaseFragment
 import com.example.vitaura.ui.mail.CallbackFragment
@@ -20,7 +20,7 @@ class DoctorsFragment: BaseFragment(R.layout.fragment_doctors), OnDoctorClickLis
     private val docViewModel by viewModel<DoctorsViewModel>()
     private val layout by viewBinding(FragmentDoctorsBinding::bind)
     private var doctorsAdapter: DoctorsAdapter? = null
-    private val doctorsObserver = Observer<Results<List<CurrentDoctor>>>{ handleDoctors(it) }
+    private val doctorsObserver = Observer<Results<List<NodeDoctor>>>{ handleDoctors(it) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -39,7 +39,7 @@ class DoctorsFragment: BaseFragment(R.layout.fragment_doctors), OnDoctorClickLis
 
     }
 
-    private fun handleDoctors(result: Results<List<CurrentDoctor>>){
+    private fun handleDoctors(result: Results<List<NodeDoctor>>){
         when(result){
             is Results.Success ->{
                 hideLoading()
@@ -57,7 +57,7 @@ class DoctorsFragment: BaseFragment(R.layout.fragment_doctors), OnDoctorClickLis
         }
     }
 
-    private fun showDoctors(doctors: List<CurrentDoctor>){
+    private fun showDoctors(doctors: List<NodeDoctor>){
         doctorsAdapter?.setDoctors(doctors)
     }
 
@@ -71,7 +71,7 @@ class DoctorsFragment: BaseFragment(R.layout.fragment_doctors), OnDoctorClickLis
         }
     }
 
-    override fun getDoctorById(id: Int) {
+    override fun getDoctorById(id: String) {
 
     }
 }

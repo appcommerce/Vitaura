@@ -4,7 +4,8 @@ import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
 data class ApiDoctors(@Expose @SerializedName("data")val data: List<Doctors>?){
-    data class Doctors(@Expose @SerializedName("attributes")val attributes: DoctorAttributes?,
+    data class Doctors(@Expose @SerializedName("id")val id: String?,
+                       @Expose @SerializedName("attributes")val attributes: DoctorAttributes?,
                        @Expose @SerializedName("relationships")val relations: DoctorRelationships?)
     data class DoctorAttributes(@Expose @SerializedName("body")val body: DoctorsTextField?,
                                 @Expose @SerializedName("field_mobile_price_spec") val price: String?,
@@ -17,6 +18,6 @@ data class ApiDoctors(@Expose @SerializedName("data")val data: List<Doctors>?){
                                 @Expose @SerializedName("field_weight")val weight: Int?)
     data class DoctorRelationships(@Expose @SerializedName("field_services")val services: DoctorServiceData?)
     data class DoctorServiceData(@Expose @SerializedName("data")val service: List<DoctorService>?)
-    data class DoctorService(@Expose @SerializedName("id")val id: Int?)
+    data class DoctorService(@Expose @SerializedName("id")val id: String?)
     data class DoctorsTextField(@Expose @SerializedName("value")val text: String?)
 }
