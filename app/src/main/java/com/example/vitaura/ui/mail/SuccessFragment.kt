@@ -6,8 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.vitaura.R
 
-class SuccessFragment: Fragment() {
-
+class SuccessFragment: Fragment(R.layout.fragment_success) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         (requireActivity() as AppCompatActivity)

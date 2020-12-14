@@ -32,4 +32,8 @@
     <string name="message_26">Новый отзыв</string>
     <string name="message_27">Сообщение отправлено</string>
     <string name="message_28">Новая запись на приём</string>
+    <string name="message_29">Ваше сообщение <br/>
+        Успешно отправлено</string>
+    <string name="message_30">Мы свяжемся с Вами <br/>
+        в ближайшее время.</string>
 </resources>
