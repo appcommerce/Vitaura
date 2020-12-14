@@ -24,4 +24,8 @@ interface IRestRequests {
     fun getChangeGallery(): Observable<List<ApiChangeFile>>
     @GET("/get_doctors")
     fun getDoctors():Observable<List<ApiCurrentDoctor>>
+    @GET("/jsonapi/node/patients")
+    fun getFeedback(): Observable<ApiPatients>
+    @GET("/rest/problems/popular_front")
+    fun getPopularProblems(): Observable<List<ApiPopularProblems>>
 }

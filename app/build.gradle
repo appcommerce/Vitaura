@@ -63,6 +63,13 @@ dependencies {
     //Загрузка изображений из интернета
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'com.github.smarteist:autoimageslider:1.4.0'
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
 
     implementation "androidx.lifecycle:lifecycle-common-java8:2.2.0"
+
+    //Парсинг сложных HTML ресурсов
+    implementation 'org.jsoup:jsoup:1.13.1'
+
+    //Шлём почту
+    implementation 'com.github.nedimf:maildroid:v0.0.4-relase'
 }

@@ -1,10 +1,14 @@
 package com.example.vitaura.ui.base
 
 import androidx.fragment.app.Fragment
-import com.example.vitaura.data.Results
+import com.google.android.material.snackbar.Snackbar
 
 abstract class BaseFragment(layoutForm: Int): Fragment(layoutForm) {
     abstract fun showLoading()
     abstract fun hideLoading()
-    abstract fun handleError(error: Throwable?)
+    fun handleError(error: Throwable?){
+        error?.message?.let {
+            Snackbar.make(requireView().rootView, it, Snackbar.LENGTH_LONG).show()
+        }
+    }
 }
