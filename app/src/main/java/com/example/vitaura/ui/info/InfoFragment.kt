@@ -6,11 +6,13 @@ import androidx.lifecycle.Observer
 import com.example.vitaura.R
 import com.example.vitaura.databinding.FragmentInfoBinding
 import com.example.vitaura.extensions.HTMLNormalizer
+import com.example.vitaura.extensions.Router
 import com.example.vitaura.extensions.viewBinding
 import com.example.vitaura.pojo.Page
 import com.example.vitaura.pojo.PopularProblems
 import com.example.vitaura.pojo.Results
 import com.example.vitaura.ui.base.BaseFragment
+import com.example.vitaura.ui.mail.CallbackFragment
 import com.example.vitaura.viewmodel.MainViewModel
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -31,6 +33,9 @@ class InfoFragment: BaseFragment(R.layout.fragment_info), OnProblemClickListener
         }
         layout.incProblems.btnRightSlide.setOnClickListener {
             layout.incProblems.rvPopular.slideToNextPosition()
+        }
+        layout.incFlower.logInFlowerBtn.setOnClickListener {
+            Router.routFragment(requireActivity(), CallbackFragment(), R.id.main_container)
         }
     }
 

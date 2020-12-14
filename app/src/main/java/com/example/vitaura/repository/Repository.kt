@@ -5,6 +5,7 @@ import com.example.vitaura.pojo.*
 import io.reactivex.Observable
 
 class Repository(private val remoteDataSource: IDataSource): IRepository {
+    //+
     override fun getSlides(): Observable<List<Slider>> = remoteDataSource.getSlides()
         .map {
             return@map it.map { slide-> Slider(slide.body,
@@ -55,7 +56,7 @@ class Repository(private val remoteDataSource: IDataSource): IRepository {
                 service.typeWeight,
                 service.weight)
         }
-
+    //+-
     override fun getPages(): Observable<List<Page>> = remoteDataSource.getPages()
             .map { page->
                 return@map page.pages?.map {
@@ -93,7 +94,7 @@ class Repository(private val remoteDataSource: IDataSource): IRepository {
         .map {
             it.map { file-> ChangeFile(file.url, file.title) }
         }
-
+    //+
     override fun getDoctors(): Observable<List<CurrentDoctor>> = remoteDataSource.getDoctors()
             .map {
                 return@map it.map { doctor-> CurrentDoctor(doctor.description,
@@ -103,14 +104,14 @@ class Repository(private val remoteDataSource: IDataSource): IRepository {
                         doctor.spec)
                 }
             }
-
+    //+
     override fun getFeedback(): Observable<List<Feedback>> = remoteDataSource.getFeedback()
             .map {
                 return@map it.data?.map { data->
                     Feedback(data.attributes?.title, data.attributes?.text?.text)
                 }
             }
-
+    //+
     override fun getPopularProblems(): Observable<List<PopularProblems>> = remoteDataSource.getPopularProblems()
             .map {
                 return@map it.map { problem-> PopularProblems(problem.url, problem.services, problem.title) }

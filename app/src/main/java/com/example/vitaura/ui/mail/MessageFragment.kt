@@ -32,15 +32,9 @@ class MessageFragment: Fragment(R.layout.fragment_message), TabLayout.OnTabSelec
         when(tab?.position){
             0 ->{
                 Router.routeTabFragment(this, SendFeedFragment(), R.id.message_container)
-                (requireActivity() as AppCompatActivity)
-                        .supportActionBar
-                        ?.title = "Оставить отзыв"
             }
             1 ->{
                 Router.routeTabFragment(this, CallbackFragment(), R.id.message_container)
-                (requireActivity() as AppCompatActivity)
-                        .supportActionBar
-                        ?.title = "Запись на приём"
             }
         }
     }

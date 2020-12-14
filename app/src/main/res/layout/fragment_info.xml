@@ -28,4 +28,9 @@
         layout="@layout/problems_body"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+    <include android:id="@+id/incFlower"
+        android:layout_gravity="bottom"
+        layout="@layout/flower_layout"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent" />
 </LinearLayout>

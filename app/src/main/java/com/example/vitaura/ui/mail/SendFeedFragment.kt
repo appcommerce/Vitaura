@@ -2,9 +2,11 @@ package com.example.vitaura.ui.mail
 
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import co.nedim.maildroidx.MaildroidX
 import com.example.vitaura.R
 import com.example.vitaura.databinding.FragmentSendBinding
+import com.example.vitaura.extensions.Router
 import com.example.vitaura.extensions.SMTPClient
 import com.example.vitaura.extensions.viewBinding
 import com.example.vitaura.ui.base.BaseFragment
@@ -22,6 +24,9 @@ class SendFeedFragment: BaseFragment(R.layout.fragment_send) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        (requireActivity() as AppCompatActivity)
+                .supportActionBar
+                ?.title = "Оставить отзыв"
         layout.incSend.feedSend.setOnClickListener {
             showLoading()
             val feed = "${layout.incSend.name}" +
@@ -35,9 +40,7 @@ class SendFeedFragment: BaseFragment(R.layout.fragment_send) {
         override val timeout: Long = 3000
         override fun onSuccess() {
             hideLoading()
-            requireActivity().supportFragmentManager
-                    .beginTransaction()
-                    .replace(R.id.main_container, SuccessFragment())
+            Router.routFragment(requireActivity(), SuccessFragment(), R.id.main_container)
         }
         override fun onFail(errorMessage: String) {
             hideLoading()
