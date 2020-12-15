@@ -94,9 +94,10 @@
             app:layout_constraintTop_toBottomOf="@+id/log_in_btn"
             app:layout_constraintVertical_bias="0"/>
         <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/more_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Подробнее"
+            android:text="@string/message_34"
             android:textSize="16sp"
             android:textColor="@color/colorPrimaryLight"
             android:fontFamily="@font/roboto_medium_pro"

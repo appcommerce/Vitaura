@@ -32,6 +32,9 @@ class DoctorsAdapter: RecyclerView.Adapter<DoctorsAdapter.DoctorsViewHolder>() {
             layout.nameTv.text = doctor.title
             layout.specTv.text = doctor.post
             layout.description.text = HTMLNormalizer.normaliseWithoutMoreSpace(doctor.shortDescription.orEmpty())
+            layout.moreBtn.setOnClickListener {
+                listener?.getDoctorById(doctor.id)
+            }
         }
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DoctorsViewHolder = DoctorsViewHolder(

@@ -71,7 +71,10 @@ class DoctorsFragment: BaseFragment(R.layout.fragment_doctors), OnDoctorClickLis
         }
     }
 
-    override fun getDoctorById(id: String) {
-
+    override fun getDoctorById(id: String?) {
+        id?.let {
+            docViewModel.doctorId = id
+            Router.routFragment(requireActivity(), CurrentDoctorFragment(), R.id.main_container)
+        }
     }
 }
