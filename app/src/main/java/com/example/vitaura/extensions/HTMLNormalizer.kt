@@ -13,4 +13,9 @@ object HTMLNormalizer {
         val doc = Jsoup.clean(Jsoup.parse(html).html(), whiteList)
         return HtmlCompat.fromHtml(doc, HtmlCompat.FROM_HTML_MODE_LEGACY)
     }
+
+    fun normaliseWithoutMoreSpace(html: String): String{
+        val doc = Jsoup.clean(Jsoup.parse(html).html(), whiteList)
+        return Jsoup.parse(doc).text()
+    }
 }

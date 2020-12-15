@@ -4,14 +4,19 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.vitaura.databinding.ItemDoctorBinding
+import com.example.vitaura.extensions.Constants
+import com.example.vitaura.extensions.HTMLNormalizer
 import com.example.vitaura.pojo.NodeDoctor
+import com.squareup.picasso.Picasso
 
 class DoctorsAdapter: RecyclerView.Adapter<DoctorsAdapter.DoctorsViewHolder>() {
     private var doctors = listOf<NodeDoctor>()
+    private var photos = listOf<String>()
     private var listener: OnDoctorClickListener? = null
 
-    fun setDoctors(list: List<NodeDoctor>){
+    fun setDoctors(list: List<NodeDoctor>, photos: List<String>){
         this.doctors = list
+        this.photos = photos
         notifyDataSetChanged()
     }
     fun setDoctorListener(listener: OnDoctorClickListener){
@@ -19,15 +24,21 @@ class DoctorsAdapter: RecyclerView.Adapter<DoctorsAdapter.DoctorsViewHolder>() {
     }
 
     inner class DoctorsViewHolder(itemViewBind: ItemDoctorBinding): RecyclerView.ViewHolder(itemViewBind.root){
-        fun bind(doctor: NodeDoctor) = with(itemView){
-            println(doctor.id.toString())
+        val layout = itemViewBind
+        fun bind(doctor: NodeDoctor, photo: String) = with(itemView){
+            Picasso.get()
+                    .load(photo)
+                    .into(layout.portraitIv)
+            layout.nameTv.text = doctor.title
+            layout.specTv.text = doctor.post
+            layout.description.text = HTMLNormalizer.normaliseWithoutMoreSpace(doctor.shortDescription.orEmpty())
         }
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DoctorsViewHolder = DoctorsViewHolder(
         ItemDoctorBinding.inflate(LayoutInflater.from(parent.context), parent, false)
     )
     override fun onBindViewHolder(holder: DoctorsViewHolder, position: Int) {
-        holder.bind(doctors[position])
+        holder.bind(doctors[position], photos[position])
     }
     override fun getItemCount(): Int = doctors.size
 }

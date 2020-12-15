@@ -10,4 +10,5 @@ data class NodeDoctor(val id: String?,
                       val specialization: String?,
                       val title: String?,
                       val weight: Int?,
-                      val serviceId: List<String?>?)
+                      val serviceId: List<String?>?,
+                      val photoUrl: List<String>?)

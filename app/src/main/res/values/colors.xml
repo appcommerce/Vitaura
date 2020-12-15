@@ -9,4 +9,6 @@
     <color name="titleColor">#58595B</color>
     <color name="hintColor">#95989A</color>
     <color name="necessaryCircleColor">#ff597b</color>
+    <color name="textColorLight">#6E6E6E</color>
+    <color name="cardLight">#F6F6F6</color>
 </resources>

@@ -58,7 +58,7 @@ class DoctorsFragment: BaseFragment(R.layout.fragment_doctors), OnDoctorClickLis
     }
 
     private fun showDoctors(doctors: List<NodeDoctor>){
-        doctorsAdapter?.setDoctors(doctors)
+        doctorsAdapter?.setDoctors(doctors, doctors[0].photoUrl ?: listOf())
     }
 
     private fun initDoctorsList(){
