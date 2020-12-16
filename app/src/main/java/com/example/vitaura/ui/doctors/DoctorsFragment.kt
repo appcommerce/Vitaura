@@ -2,6 +2,7 @@ package com.example.vitaura.ui.doctors
 
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -14,10 +15,11 @@ import com.example.vitaura.pojo.Results
 import com.example.vitaura.ui.base.BaseFragment
 import com.example.vitaura.ui.mail.CallbackFragment
 import com.example.vitaura.viewmodel.DoctorsViewModel
+import org.koin.android.viewmodel.ext.android.sharedViewModel
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class DoctorsFragment: BaseFragment(R.layout.fragment_doctors), OnDoctorClickListener {
-    private val docViewModel by viewModel<DoctorsViewModel>()
+    private val docViewModel by sharedViewModel<DoctorsViewModel>()
     private val layout by viewBinding(FragmentDoctorsBinding::bind)
     private var doctorsAdapter: DoctorsAdapter? = null
     private val doctorsObserver = Observer<Results<List<NodeDoctor>>>{ handleDoctors(it) }
@@ -29,6 +31,14 @@ class DoctorsFragment: BaseFragment(R.layout.fragment_doctors), OnDoctorClickLis
         layout.incFlower.logInFlowerBtn.setOnClickListener {
             Router.routFragment(requireActivity(), CallbackFragment(), R.id.main_container)
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        (requireActivity() as AppCompatActivity)
+            .supportActionBar?.apply {
+                title = "Специалисты"
+            }
     }
 
     override fun showLoading() {
@@ -76,5 +86,9 @@ class DoctorsFragment: BaseFragment(R.layout.fragment_doctors), OnDoctorClickLis
             docViewModel.doctorId = id
             Router.routFragment(requireActivity(), CurrentDoctorFragment(), R.id.main_container)
         }
+    }
+
+    override fun getCallback() {
+        Router.routFragment(requireActivity(), CallbackFragment(), R.id.main_container)
     }
 }

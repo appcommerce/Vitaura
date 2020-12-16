@@ -2,6 +2,7 @@ package com.example.vitaura.ui.main
 
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.example.vitaura.R
@@ -35,6 +36,14 @@ class MainFragment: BaseFragment(R.layout.fragment_main), TabLayout.OnTabSelecte
         sliderAdapter?.let {
             layout.mainSlider.setSliderAdapter(it)
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        (requireActivity() as AppCompatActivity)
+            .supportActionBar?.apply {
+                title = "Главная"
+            }
     }
 
     private fun initTabs(){

@@ -16,7 +16,7 @@ interface IRestRequests {
     fun getServiceById(@Path("id")id: Int): Observable<ApiService>
     @GET("/jsonapi/node/page")
     fun getPages(): Observable<ApiPages>
-    @GET("/jsonapi/node/doctors?include=field_photo")
+    @GET("/jsonapi/node/doctors?include=field_photo&filter[status][value]=1")
     fun getNodeDoctors(): Observable<ApiDoctors>
     @GET("/jsonapi/node/doctors/{id}?include=field_photo")
     fun getDoctor(@Path("id")id: String):Observable<ApiCurrentDoctor>

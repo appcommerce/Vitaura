@@ -11,4 +11,7 @@
     <color name="necessaryCircleColor">#ff597b</color>
     <color name="textColorLight">#6E6E6E</color>
     <color name="cardLight">#F6F6F6</color>
+    <color name="titleDoctor">#3E3E3E</color>
+    <color name="doctorBackground">#37B7BF</color>
+    <color name="docPrice">#707070</color>
 </resources>

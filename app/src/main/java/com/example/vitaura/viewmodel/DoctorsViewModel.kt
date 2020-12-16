@@ -13,6 +13,9 @@ class DoctorsViewModel(private val repository: IRepository): BaseViewModel() {
     private val doctors = MutableLiveData<Results<List<NodeDoctor>>>()
     private val doctor = MutableLiveData<Results<NodeDoctor>>()
     var doctorId: String? = null
+    var doctorInfo: String? = null
+    var doctorSpec: String? = null
+    var doctorEdu: String? = null
     fun getDoctors(): LiveData<Results<List<NodeDoctor>>> {
         repository.getNodeDoctors()
                 .subscribeOn(scheduler.io())

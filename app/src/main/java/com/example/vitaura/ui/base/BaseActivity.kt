@@ -26,7 +26,6 @@ class BaseActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         super.onCreate(savedInstanceState)
         setContentView(viewBind.root)
         setSupportActionBar(viewBind.toolbar)
-        supportActionBar?.title = "Главная"
         val drawerToggle = ActionBarDrawerToggle(this,
                 viewBind.drawerLayout,
                 viewBind.toolbar,
