@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.vitaura.R
 import com.example.vitaura.databinding.FragmentServiceTypeBinding
+import com.example.vitaura.extensions.Router
 import com.example.vitaura.extensions.viewBinding
 import com.example.vitaura.pojo.Results
 import com.example.vitaura.pojo.ServiceType
@@ -14,7 +15,7 @@ import com.example.vitaura.ui.base.BaseFragment
 import com.example.vitaura.viewmodel.ServiceViewModel
 import org.koin.android.viewmodel.ext.android.sharedViewModel
 
-class ServiceTypeFragment: BaseFragment(R.layout.fragment_service_type) {
+class ServiceTypeFragment: BaseFragment(R.layout.fragment_service_type), OnServiceTypeClickListener {
     private val serviceViewModel by sharedViewModel<ServiceViewModel>()
     private val layout by viewBinding(FragmentServiceTypeBinding::bind)
     private var serviceTypeAdapter: ServiceTypeAdapter? = null
@@ -28,6 +29,7 @@ class ServiceTypeFragment: BaseFragment(R.layout.fragment_service_type) {
 
     private fun initServiceList(){
         serviceTypeAdapter = ServiceTypeAdapter()
+        serviceTypeAdapter?.setSrviceTypeClickListener(this)
         layout.rvServices.apply {
             layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
             setHasFixedSize(true)
@@ -59,6 +61,11 @@ class ServiceTypeFragment: BaseFragment(R.layout.fragment_service_type) {
 
     override fun hideLoading() {
 
+    }
+
+    override fun getServiceByType(aliasType: String) {
+        serviceViewModel.serviceTypeAlias = aliasType
+        Router.routFragment(requireActivity(), ServicesFragment(), R.id.main_container)
     }
 
 }
