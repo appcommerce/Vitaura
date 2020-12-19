@@ -18,7 +18,7 @@ import com.example.vitaura.ui.mail.CallbackFragment
 import com.example.vitaura.viewmodel.ServiceViewModel
 import org.koin.android.viewmodel.ext.android.sharedViewModel
 
-class ServiceSubTypeFragment: BaseFragment(R.layout.fragment_service_sub_type) {
+class ServiceSubTypeFragment: BaseFragment(R.layout.fragment_service_sub_type), OnServiceSubTypeClickListener {
     private val serviceViewModel by sharedViewModel<ServiceViewModel>()
     private val layout by viewBinding(FragmentServiceSubTypeBinding::bind)
     private var serviceAdapter: ServiceSubTypeAdapter? = null
@@ -63,10 +63,8 @@ class ServiceSubTypeFragment: BaseFragment(R.layout.fragment_service_sub_type) {
             is Results.Success ->{
                 hideLoading()
                 result.data?.let { sub->
-                    val subtypes = sub.filter {
-                        serviceViewModel.serviceTypeAlias.orEmpty() == it.type
-                    }
-                    serviceAdapter?.setSubTypes(subtypes)
+                    val mainSubTypes = sub.filter { serviceViewModel.serviceTypeAlias.orEmpty() == it.type }
+                    serviceAdapter?.setMainSubTypes(mainSubTypes)
                 }
             }
             is Results.Loading ->{
@@ -85,5 +83,12 @@ class ServiceSubTypeFragment: BaseFragment(R.layout.fragment_service_sub_type) {
 
     override fun hideLoading() {
 
+    }
+
+    override fun getServiceById(id: String?) {
+        id?.let {
+            serviceViewModel.serviceId = it
+
+        }
     }
 }
