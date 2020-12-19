@@ -1,5 +1,6 @@
 package com.example.vitaura.repository
 
+import com.example.vitaura.R
 import com.example.vitaura.datasource.IDataSource
 import com.example.vitaura.pojo.*
 import io.reactivex.Observable
@@ -129,7 +130,13 @@ class Repository(private val remoteDataSource: IDataSource): IRepository {
     override fun getServiceTypes(): Observable<List<ServiceType>> {
         return Observable.create{
             try {
-                it.onNext(listOf())
+                it.onNext(listOf(
+                    ServiceType("Лицо", "face", R.drawable.face),
+                    ServiceType("Тело", "body", R.drawable.body),
+                    ServiceType("Волосы", "hair", R.drawable.hair),
+                    ServiceType("Интимные зоны", "intim", R.drawable.intim),
+                    ServiceType("Диагностика", "diagnostics", R.drawable.diagnostics)
+                ))
             }catch (error: Throwable){
                 it.onError(error)
             }

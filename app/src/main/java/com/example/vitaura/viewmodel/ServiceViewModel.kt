@@ -13,6 +13,7 @@ import io.reactivex.rxkotlin.subscribeBy
 class ServiceViewModel(private val repository: IRepository): BaseViewModel() {
     private val services = MutableLiveData<Results<List<Service>>>()
     private val serviceTypes = MutableLiveData<Results<List<ServiceType>>>()
+    var serviceTypeAlias: String? = null
 
     fun getServiceTypes() : LiveData<Results<List<ServiceType>>>{
         repository.getServiceTypes()

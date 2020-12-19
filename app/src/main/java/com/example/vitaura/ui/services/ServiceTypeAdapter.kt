@@ -1,5 +1,6 @@
 package com.example.vitaura.ui.services
 
+import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -12,7 +13,8 @@ class ServiceTypeAdapter: RecyclerView.Adapter<ServiceTypeAdapter.ServiceTypeVie
     inner class ServiceTypeViewHolder(itemViewBind: ItemServiceTypeBinding): RecyclerView.ViewHolder(itemViewBind.root){
         private val layout = itemViewBind
         fun bind(serviceType: ServiceType) = with(itemView){
-
+            layout.name.text = serviceType.type
+            layout.servicePic.setImageBitmap(BitmapFactory.decodeResource(resources, serviceType.resId))
         }
     }
     fun setServiceTypes(list: List<ServiceType>){
