@@ -29,7 +29,7 @@ class ServiceTypeFragment: BaseFragment(R.layout.fragment_service_type), OnServi
 
     private fun initServiceList(){
         serviceTypeAdapter = ServiceTypeAdapter()
-        serviceTypeAdapter?.setSrviceTypeClickListener(this)
+        serviceTypeAdapter?.setServiceTypeClickListener(this)
         layout.rvServices.apply {
             layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
             setHasFixedSize(true)

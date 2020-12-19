@@ -24,7 +24,7 @@ class ServiceTypeAdapter: RecyclerView.Adapter<ServiceTypeAdapter.ServiceTypeVie
         this.services = list
         notifyDataSetChanged()
     }
-    fun setSrviceTypeClickListener(listener: OnServiceTypeClickListener){
+    fun setServiceTypeClickListener(listener: OnServiceTypeClickListener){
         this.serviceClickListener = listener
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ServiceTypeViewHolder = ServiceTypeViewHolder(
