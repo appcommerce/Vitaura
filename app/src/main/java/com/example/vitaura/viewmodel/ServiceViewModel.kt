@@ -14,7 +14,8 @@ class ServiceViewModel(private val repository: IRepository): BaseViewModel() {
     private val services = MutableLiveData<Results<List<Service>>>()
     private val serviceTypes = MutableLiveData<Results<List<ServiceType>>>()
     var serviceTypeAlias: String? = null
-
+    var serviceTypeImg: Int? = null
+    var serviceTypeName: String? = null
     fun getServiceTypes() : LiveData<Results<List<ServiceType>>>{
         repository.getServiceTypes()
             .subscribeOn(scheduler.io())

@@ -2,6 +2,7 @@ package com.example.vitaura.ui.services
 
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -25,6 +26,14 @@ class ServiceTypeFragment: BaseFragment(R.layout.fragment_service_type), OnServi
         super.onViewCreated(view, savedInstanceState)
         initServiceList()
         serviceViewModel.getServiceTypes().observe(viewLifecycleOwner, serviceObserver)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        (requireActivity() as AppCompatActivity)
+            .supportActionBar?.apply {
+                title = "Услуги"
+            }
     }
 
     private fun initServiceList(){
@@ -63,9 +72,13 @@ class ServiceTypeFragment: BaseFragment(R.layout.fragment_service_type), OnServi
 
     }
 
-    override fun getServiceByType(aliasType: String) {
-        serviceViewModel.serviceTypeAlias = aliasType
-        Router.routFragment(requireActivity(), ServicesFragment(), R.id.main_container)
+    override fun getServiceByType(aliasType: String, imgType: Int, nameType: String) {
+        serviceViewModel.apply {
+            serviceTypeAlias = aliasType
+            serviceTypeImg = imgType
+            serviceTypeName = nameType
+        }
+        Router.routFragment(requireActivity(), ServiceSubTypeFragment(), R.id.main_container)
     }
 
 }

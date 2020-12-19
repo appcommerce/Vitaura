@@ -16,7 +16,10 @@ class ServiceTypeAdapter: RecyclerView.Adapter<ServiceTypeAdapter.ServiceTypeVie
             layout.name.text = serviceType.type
             layout.servicePic.setImageBitmap(BitmapFactory.decodeResource(resources, serviceType.resId))
             layout.name.setOnClickListener {
-                serviceClickListener?.getServiceByType(serviceType.aliasType)
+                serviceClickListener?.getServiceByType(
+                    serviceType.aliasType,
+                    serviceType.resId,
+                    serviceType.type)
             }
         }
     }
