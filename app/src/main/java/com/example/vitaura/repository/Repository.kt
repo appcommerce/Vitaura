@@ -125,4 +125,14 @@ class Repository(private val remoteDataSource: IDataSource): IRepository {
             .map {
                 return@map it.map { problem-> PopularProblems(problem.url, problem.services, problem.title) }
             }
+
+    override fun getServiceTypes(): Observable<List<ServiceType>> {
+        return Observable.create{
+            try {
+                it.onNext(listOf())
+            }catch (error: Throwable){
+                it.onError(error)
+            }
+        }
+    }
 }

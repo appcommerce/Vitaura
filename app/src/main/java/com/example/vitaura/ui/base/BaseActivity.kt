@@ -14,6 +14,7 @@ import com.example.vitaura.ui.doctors.DoctorsFragment
 import com.example.vitaura.ui.feedback.FeedbackFragment
 import com.example.vitaura.ui.mail.MessageFragment
 import com.example.vitaura.ui.main.MainFragment
+import com.example.vitaura.ui.services.ServiceTypeFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 
@@ -46,20 +47,28 @@ class BaseActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 viewBind.drawerLayout.closeDrawer(GravityCompat.START)
 
             }
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.main_container, MainFragment())
-            .commit()
+        if (supportFragmentManager.findFragmentById(R.id.main_container) == null){
+            Router.routFragment(this, MainFragment(), R.id.main_container)
+        }
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         viewBind.drawerLayout.closeDrawer(GravityCompat.START)
         return when(item.itemId){
+            R.id.main ->{
+                Router.routFragment(this, MainFragment(), R.id.main_container)
+                true
+            }
             R.id.reviews ->{
                 Router.routFragment(this, FeedbackFragment(), R.id.main_container)
                 true
             }
             R.id.doctors ->{
                 Router.routFragment(this, DoctorsFragment(), R.id.main_container)
+                true
+            }
+            R.id.services -> {
+                Router.routFragment(this, ServiceTypeFragment(), R.id.main_container)
                 true
             }
             else -> false

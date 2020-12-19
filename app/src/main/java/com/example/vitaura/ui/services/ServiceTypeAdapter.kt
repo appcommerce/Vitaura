@@ -1,0 +1,29 @@
+package com.example.vitaura.ui.services
+
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
+import com.example.vitaura.databinding.ItemServiceTypeBinding
+import com.example.vitaura.pojo.ServiceType
+
+class ServiceTypeAdapter: RecyclerView.Adapter<ServiceTypeAdapter.ServiceTypeViewHolder>() {
+    private var services = listOf<ServiceType>()
+
+    inner class ServiceTypeViewHolder(itemViewBind: ItemServiceTypeBinding): RecyclerView.ViewHolder(itemViewBind.root){
+        private val layout = itemViewBind
+        fun bind(serviceType: ServiceType) = with(itemView){
+
+        }
+    }
+    fun setServiceTypes(list: List<ServiceType>){
+        this.services = list
+        notifyDataSetChanged()
+    }
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ServiceTypeViewHolder = ServiceTypeViewHolder(
+        ItemServiceTypeBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+    )
+    override fun onBindViewHolder(holder: ServiceTypeViewHolder, position: Int) {
+        holder.bind(services[position])
+    }
+    override fun getItemCount(): Int = services.size
+}
