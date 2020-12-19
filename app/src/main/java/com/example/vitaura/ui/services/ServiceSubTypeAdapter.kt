@@ -11,6 +11,7 @@ import com.example.vitaura.pojo.Service
 class ServiceSubTypeAdapter: RecyclerView.Adapter<ServiceSubTypeAdapter.ServiceSubTypeViewHolder>() {
     private var parentSubTypes = listOf<Service>()
     private var childrenSubTypes = listOf<Service>()
+    private var serviceClickListener: OnServiceSubTypeClickListener? = null
     inner class ServiceSubTypeViewHolder(itemViewBind: ItemServiceSubTypeBinding): RecyclerView.ViewHolder(itemViewBind.root){
         private val layout = itemViewBind
         fun bind(service: Service) = with(itemView){
@@ -29,7 +30,9 @@ class ServiceSubTypeAdapter: RecyclerView.Adapter<ServiceSubTypeAdapter.ServiceS
             layout.rvServiceList.apply {
                 layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
                 setHasFixedSize(true)
-                adapter = ServiceAdapter(childrenSubTypes.filter { it.parentTargetId == service.tid })
+                adapter = ServiceAdapter(
+                    childrenSubTypes.filter { it.parentTargetId == service.tid },
+                    serviceClickListener)
             }
         }
     }
@@ -37,6 +40,9 @@ class ServiceSubTypeAdapter: RecyclerView.Adapter<ServiceSubTypeAdapter.ServiceS
         this.parentSubTypes = list.filter { it.parentTargetId.isNullOrEmpty() }
         this.childrenSubTypes = list
         notifyDataSetChanged()
+    }
+    fun setServiceClickListener(listener: OnServiceSubTypeClickListener){
+        this.serviceClickListener = listener
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ServiceSubTypeViewHolder = ServiceSubTypeViewHolder(
         ItemServiceSubTypeBinding.inflate(LayoutInflater.from(parent.context), parent, false)

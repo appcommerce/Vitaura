@@ -51,6 +51,7 @@ class ServiceSubTypeFragment: BaseFragment(R.layout.fragment_service_sub_type), 
 
     private fun initServiceList(){
         serviceAdapter = ServiceSubTypeAdapter()
+        serviceAdapter?.setServiceClickListener(this)
         layout.rvSubTypes.apply {
             layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
             setHasFixedSize(true)
@@ -85,10 +86,9 @@ class ServiceSubTypeFragment: BaseFragment(R.layout.fragment_service_sub_type), 
 
     }
 
-    override fun getServiceById(id: String?) {
-        id?.let {
-            serviceViewModel.serviceId = it
-
+    override fun getServiceById(service: Service?) {
+        service?.let {
+            serviceViewModel.service = it
         }
     }
 }
