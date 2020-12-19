@@ -27,10 +27,10 @@ class FeedbackFragment: BaseFragment(R.layout.fragment_feedback) {
         initFeedbackList()
         mainViewModel.getFeedback().observe(viewLifecycleOwner, feedsObserver)
         layout.incFlower.logInFlowerBtn.setOnClickListener {
-            Router.routFragment(requireActivity(), CallbackFragment(), R.id.main_container)
+            Router.routeFragment(requireActivity(), CallbackFragment(), R.id.main_container)
         }
         layout.sendFeed.setOnClickListener {
-            Router.routFragment(requireActivity(), SendFeedFragment(), R.id.main_container)
+            Router.routeFragment(requireActivity(), SendFeedFragment(), R.id.main_container)
         }
     }
 

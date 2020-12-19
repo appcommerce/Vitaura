@@ -42,7 +42,7 @@ class CallbackFragment: BaseFragment(R.layout.fragment_callback) {
         override val timeout: Long = 3000
         override fun onSuccess() {
             hideLoading()
-            Router.routFragment(requireActivity(), SuccessFragment(), R.id.main_container)
+            Router.routeFragment(requireActivity(), SuccessFragment(), R.id.main_container)
         }
         override fun onFail(errorMessage: String) {
             hideLoading()

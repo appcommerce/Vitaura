@@ -31,7 +31,7 @@ class CurrentDoctorFragment: BaseFragment(R.layout.fragment_current_doctor), Tab
             requireActivity().supportFragmentManager.popBackStack()
         }
         layout.callbackDocBtn.setOnClickListener {
-            Router.routFragment(requireActivity(), CallbackFragment(), R.id.main_container)
+            Router.routeFragment(requireActivity(), CallbackFragment(), R.id.main_container)
         }
     }
 
@@ -93,8 +93,8 @@ class CurrentDoctorFragment: BaseFragment(R.layout.fragment_current_doctor), Tab
     override fun onTabUnselected(tab: TabLayout.Tab?) {}
     override fun onTabReselected(tab: TabLayout.Tab?) {}
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onDestroyView() {
         layout.docTab.removeOnTabSelectedListener(this)
+        super.onDestroyView()
     }
 }

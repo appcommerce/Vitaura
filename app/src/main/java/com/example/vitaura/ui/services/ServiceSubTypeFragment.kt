@@ -37,7 +37,7 @@ class ServiceSubTypeFragment: BaseFragment(R.layout.fragment_service_sub_type), 
             }
         }
         layout.flowerBottom.logInFlowerBtn.setOnClickListener {
-            Router.routFragment(requireActivity(), CallbackFragment(), R.id.main_container)
+            Router.routeFragment(requireActivity(), CallbackFragment(), R.id.main_container)
         }
     }
 
@@ -89,6 +89,7 @@ class ServiceSubTypeFragment: BaseFragment(R.layout.fragment_service_sub_type), 
     override fun getServiceById(service: Service?) {
         service?.let {
             serviceViewModel.service = it
+            Router.routeFragment(requireActivity(), ServiceFragment(), R.id.main_container)
         }
     }
 }

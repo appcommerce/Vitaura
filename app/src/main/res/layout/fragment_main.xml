@@ -43,6 +43,7 @@
             app:tabGravity="fill"
             app:tabIndicatorFullWidth="true"
             app:layout_collapseMode="pin"
+            app:tabTextAppearance="@style/TabTextStyle"
             app:tabIndicatorColor="@color/colorPrimary"
             app:tabSelectedTextColor="@color/titleColor"
             app:tabTextColor="@color/colorPrimary"

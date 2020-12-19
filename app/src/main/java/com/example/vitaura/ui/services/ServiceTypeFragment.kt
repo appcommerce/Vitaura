@@ -78,7 +78,7 @@ class ServiceTypeFragment: BaseFragment(R.layout.fragment_service_type), OnServi
             serviceTypeImg = imgType
             serviceTypeName = nameType
         }
-        Router.routFragment(requireActivity(), ServiceSubTypeFragment(), R.id.main_container)
+        Router.routeFragment(requireActivity(), ServiceSubTypeFragment(), R.id.main_container)
     }
 
 }

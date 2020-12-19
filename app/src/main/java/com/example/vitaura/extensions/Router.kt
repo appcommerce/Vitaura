@@ -9,7 +9,7 @@ object Router {
                 .addToBackStack(null)
                 .commit()
     }
-    fun routFragment(from: FragmentActivity, to: Fragment, container: Int){
+    fun routeFragment(from: FragmentActivity, to: Fragment, container: Int){
                 from
                 .supportFragmentManager
                 .beginTransaction()

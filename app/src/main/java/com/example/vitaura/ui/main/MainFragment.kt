@@ -83,21 +83,17 @@ class MainFragment: BaseFragment(R.layout.fragment_main), TabLayout.OnTabSelecte
         sliderAdapter?.addSlides(result)
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        layout.mainTab.removeOnTabSelectedListener(this)
-    }
-
     override fun onTabSelected(tab: TabLayout.Tab?) {
         when(tab?.position){
-            0 ->{
-                Router.routeTabFragment(this, InfoFragment(), R.id.tab_container)
-            }
-            1 ->{
-                Router.routeTabFragment(this, FeedbackFragment(), R.id.tab_container)
-            }
+            0 -> Router.routeTabFragment(this, InfoFragment(), R.id.tab_container)
+            1 -> Router.routeTabFragment(this, FeedbackFragment(), R.id.tab_container)
         }
     }
     override fun onTabUnselected(tab: TabLayout.Tab?) {}
     override fun onTabReselected(tab: TabLayout.Tab?) {}
+
+    override fun onDestroyView() {
+        layout.mainTab.removeOnTabSelectedListener(this)
+        super.onDestroyView()
+    }
 }

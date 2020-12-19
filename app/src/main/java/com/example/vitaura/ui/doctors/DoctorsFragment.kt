@@ -16,7 +16,6 @@ import com.example.vitaura.ui.base.BaseFragment
 import com.example.vitaura.ui.mail.CallbackFragment
 import com.example.vitaura.viewmodel.DoctorsViewModel
 import org.koin.android.viewmodel.ext.android.sharedViewModel
-import org.koin.android.viewmodel.ext.android.viewModel
 
 class DoctorsFragment: BaseFragment(R.layout.fragment_doctors), OnDoctorClickListener {
     private val docViewModel by sharedViewModel<DoctorsViewModel>()
@@ -29,7 +28,7 @@ class DoctorsFragment: BaseFragment(R.layout.fragment_doctors), OnDoctorClickLis
         initDoctorsList()
         docViewModel.getDoctors().observe(viewLifecycleOwner, doctorsObserver)
         layout.incFlower.logInFlowerBtn.setOnClickListener {
-            Router.routFragment(requireActivity(), CallbackFragment(), R.id.main_container)
+            Router.routeFragment(requireActivity(), CallbackFragment(), R.id.main_container)
         }
     }
 
@@ -84,11 +83,11 @@ class DoctorsFragment: BaseFragment(R.layout.fragment_doctors), OnDoctorClickLis
     override fun getDoctorById(id: String?) {
         id?.let {
             docViewModel.doctorId = id
-            Router.routFragment(requireActivity(), CurrentDoctorFragment(), R.id.main_container)
+            Router.routeFragment(requireActivity(), CurrentDoctorFragment(), R.id.main_container)
         }
     }
 
     override fun getCallback() {
-        Router.routFragment(requireActivity(), CallbackFragment(), R.id.main_container)
+        Router.routeFragment(requireActivity(), CallbackFragment(), R.id.main_container)
     }
 }

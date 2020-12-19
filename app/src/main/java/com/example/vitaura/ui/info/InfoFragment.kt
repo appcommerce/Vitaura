@@ -35,7 +35,7 @@ class InfoFragment: BaseFragment(R.layout.fragment_info), OnProblemClickListener
             layout.incProblems.rvPopular.slideToNextPosition()
         }
         layout.incFlower.logInFlowerBtn.setOnClickListener {
-            Router.routFragment(requireActivity(), CallbackFragment(), R.id.main_container)
+            Router.routeFragment(requireActivity(), CallbackFragment(), R.id.main_container)
         }
     }
 

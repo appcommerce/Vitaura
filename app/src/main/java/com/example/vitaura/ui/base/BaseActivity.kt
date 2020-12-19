@@ -48,7 +48,7 @@ class BaseActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
             }
         if (supportFragmentManager.findFragmentById(R.id.main_container) == null){
-            Router.routFragment(this, MainFragment(), R.id.main_container)
+            Router.routeFragment(this, MainFragment(), R.id.main_container)
         }
     }
 
@@ -56,19 +56,19 @@ class BaseActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         viewBind.drawerLayout.closeDrawer(GravityCompat.START)
         return when(item.itemId){
             R.id.main ->{
-                Router.routFragment(this, MainFragment(), R.id.main_container)
+                Router.routeFragment(this, MainFragment(), R.id.main_container)
                 true
             }
             R.id.reviews ->{
-                Router.routFragment(this, FeedbackFragment(), R.id.main_container)
+                Router.routeFragment(this, FeedbackFragment(), R.id.main_container)
                 true
             }
             R.id.doctors ->{
-                Router.routFragment(this, DoctorsFragment(), R.id.main_container)
+                Router.routeFragment(this, DoctorsFragment(), R.id.main_container)
                 true
             }
             R.id.services -> {
-                Router.routFragment(this, ServiceTypeFragment(), R.id.main_container)
+                Router.routeFragment(this, ServiceTypeFragment(), R.id.main_container)
                 true
             }
             else -> false
