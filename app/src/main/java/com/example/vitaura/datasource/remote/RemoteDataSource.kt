@@ -2,6 +2,7 @@ package com.example.vitaura.datasource.remote
 
 import com.example.vitaura.data.*
 import com.example.vitaura.datasource.IDataSource
+import com.google.gson.JsonObject
 import io.reactivex.Observable
 
 class RemoteDataSource(private val restDataSource: RetrofitProvider): IDataSource{
@@ -17,4 +18,5 @@ class RemoteDataSource(private val restDataSource: RetrofitProvider): IDataSourc
     override fun getPopularProblems(): Observable<List<ApiPopularProblems>> = restDataSource.getService().getPopularProblems()
     override fun getTaxonomyService(id: String): Observable<ApiTaxonomyService> = restDataSource.getService().getTaxonomyServiceById(id)
     override fun getServiceNodeDoctors(id: String): Observable<ApiDoctors> = restDataSource.getService().getServiceNodeDoctors(id)
+    override fun getPrices(): Observable<JsonObject> = restDataSource.getService().getPrices()
 }

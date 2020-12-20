@@ -1,6 +1,7 @@
 package com.example.vitaura.datasource.remote
 
 import com.example.vitaura.extensions.Constants
+import com.google.gson.GsonBuilder
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -20,7 +21,8 @@ class RetrofitProvider(private val interceptor: BaseInterceptor) {
     }
     private fun getRetrofit(interceptor: Interceptor): Retrofit = Retrofit.Builder()
             .baseUrl(baseUrl)
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create(GsonBuilder()
+                .create()))
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             //.client(createOkHttpClient(interceptor))
             .build()

@@ -14,6 +14,7 @@ import com.example.vitaura.ui.doctors.DoctorsFragment
 import com.example.vitaura.ui.feedback.FeedbackFragment
 import com.example.vitaura.ui.mail.MessageFragment
 import com.example.vitaura.ui.main.MainFragment
+import com.example.vitaura.ui.price.PriceFragment
 import com.example.vitaura.ui.services.ServiceTypeFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
@@ -69,6 +70,10 @@ class BaseActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
             R.id.services -> {
                 Router.routeFragment(this, ServiceTypeFragment(), R.id.main_container)
+                true
+            }
+            R.id.prices -> {
+                Router.routeFragment(this, PriceFragment(), R.id.main_container)
                 true
             }
             else -> false

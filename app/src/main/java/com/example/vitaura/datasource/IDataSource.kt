@@ -1,6 +1,7 @@
 package com.example.vitaura.datasource
 
 import com.example.vitaura.data.*
+import com.google.gson.JsonObject
 import io.reactivex.Observable
 
 interface IDataSource {
@@ -16,4 +17,5 @@ interface IDataSource {
     fun getPopularProblems(): Observable<List<ApiPopularProblems>>
     fun getTaxonomyService(id: String): Observable<ApiTaxonomyService>
     fun getServiceNodeDoctors(id: String): Observable<ApiDoctors>
+    fun getPrices(): Observable<JsonObject>
 }

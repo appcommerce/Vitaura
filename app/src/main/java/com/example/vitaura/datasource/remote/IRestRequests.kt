@@ -1,6 +1,7 @@
 package com.example.vitaura.datasource.remote
 
 import com.example.vitaura.data.*
+import com.google.gson.JsonObject
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -31,4 +32,6 @@ interface IRestRequests {
     fun getTaxonomyServiceById(@Query("filter[drupal_internal__tid]") id: String): Observable<ApiTaxonomyService>
     @GET("/jsonapi/node/doctors?include=field_photo")
     fun getServiceNodeDoctors(@Query("filter[field_services.id]")id: String): Observable<ApiDoctors>
+    @GET("/blocks_for_page/special_links/price.html")
+    fun getPrices(): Observable<JsonObject>
 }

@@ -1,8 +1,10 @@
 package com.example.vitaura.repository
 
 import com.example.vitaura.R
+import com.example.vitaura.data.ApiPrice
 import com.example.vitaura.datasource.IDataSource
 import com.example.vitaura.pojo.*
+import com.google.gson.*
 import io.reactivex.Observable
 
 class Repository(private val remoteDataSource: IDataSource): IRepository {
@@ -157,5 +159,23 @@ class Repository(private val remoteDataSource: IDataSource): IRepository {
                     doctor.relations?.services?.service?.map { service -> service.id },
                     it.include?.map { it.links?.photoUri?.url.orEmpty() })
             }
+        }
+
+    override fun getPrices(): Observable<List<Prices>> = remoteDataSource.getPrices()
+        .map { val result = mutableListOf<Prices>()
+                for ((k, value) in it.asJsonObject.entrySet()){
+                    if (value.isJsonObject){
+                        for ((key, v) in it.get("data").asJsonObject.entrySet()){
+                            val ve = value.asJsonObject.getAsJsonObject(key)
+                            //println(ve)
+                            if (ve.get("data").isJsonArray){
+                                result.add(Gson().fromJson(ve, Prices::class.java))
+                            }
+                        }
+                        //println(k)
+                    }
+                }
+            println(result)
+            return@map listOf()
         }
 }

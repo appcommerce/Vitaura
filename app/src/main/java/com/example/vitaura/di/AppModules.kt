@@ -8,6 +8,7 @@ import com.example.vitaura.repository.IRepository
 import com.example.vitaura.repository.Repository
 import com.example.vitaura.viewmodel.DoctorsViewModel
 import com.example.vitaura.viewmodel.MainViewModel
+import com.example.vitaura.viewmodel.PriceViewModel
 import com.example.vitaura.viewmodel.ServiceViewModel
 import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.core.qualifier.named
@@ -27,4 +28,5 @@ val viewModelsModule = module {
     viewModel { MainViewModel(get()) }
     viewModel { DoctorsViewModel(get()) }
     viewModel { ServiceViewModel(get()) }
+    viewModel { PriceViewModel(get()) }
 }
