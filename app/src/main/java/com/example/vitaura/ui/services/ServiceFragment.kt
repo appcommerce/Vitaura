@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import com.example.vitaura.R
 import com.example.vitaura.databinding.FragmentServiceBinding
+import com.example.vitaura.extensions.Router
 import com.example.vitaura.extensions.viewBinding
 import com.example.vitaura.ui.base.BaseFragment
 import com.example.vitaura.viewmodel.ServiceViewModel
@@ -26,6 +27,7 @@ class ServiceFragment: BaseFragment(R.layout.fragment_service), TabLayout.OnTabS
     }
 
     private fun initTabs(){
+        Router.routeTabFragment(this, ServiceEffectiveFragment(), R.id.service_container)
         layout.serviceTab.addTab(layout.serviceTab.newTab().setText("Эффективность"))
         layout.serviceTab.addTab(layout.serviceTab.newTab().setText("Преимущества"))
         layout.serviceTab.addTab(layout.serviceTab.newTab().setText("Противопоказания"))
@@ -42,15 +44,9 @@ class ServiceFragment: BaseFragment(R.layout.fragment_service), TabLayout.OnTabS
 
     override fun onTabSelected(tab: TabLayout.Tab?) {
         when(tab?.position){
-            0 ->{
-
-            }
-            1 -> {
-
-            }
-            2 -> {
-
-            }
+            0 -> Router.routeTabFragment(this, ServiceEffectiveFragment(), R.id.service_container)
+            1 -> Router.routeTabFragment(this, ServiceBenefitsFragment(), R.id.service_container)
+            2 -> Router.routeTabFragment(this, ServiceContraindicationsFragment(), R.id.service_container)
         }
     }
     override fun onTabUnselected(tab: TabLayout.Tab?) {}
