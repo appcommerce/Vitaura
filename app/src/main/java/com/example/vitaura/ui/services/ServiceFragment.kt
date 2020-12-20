@@ -42,9 +42,9 @@ class ServiceFragment: BaseFragment(R.layout.fragment_service), TabLayout.OnTabS
         layout.incFlower.logInFlowerBtn.setOnClickListener {
             Router.routeFragment(requireActivity(), CallbackFragment(), R.id.main_container)
         }
-        docViewModel.getDoctors().observe(viewLifecycleOwner, doctorsObserver)
         serviceViewModel.serviceTid?.let {
             serviceViewModel.getServiceById(it).observe(viewLifecycleOwner, serviceObserver)
+            docViewModel.getDoctorsByServiceId(it).observe(viewLifecycleOwner, doctorsObserver)
         }
     }
 

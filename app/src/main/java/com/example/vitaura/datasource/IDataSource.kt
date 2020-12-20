@@ -15,4 +15,5 @@ interface IDataSource {
     fun getFeedback(): Observable<ApiPatients>
     fun getPopularProblems(): Observable<List<ApiPopularProblems>>
     fun getTaxonomyService(id: String): Observable<ApiTaxonomyService>
+    fun getServiceNodeDoctors(id: String): Observable<ApiDoctors>
 }

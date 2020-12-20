@@ -16,4 +16,5 @@ class RemoteDataSource(private val restDataSource: RetrofitProvider): IDataSourc
     override fun getFeedback(): Observable<ApiPatients> = restDataSource.getService().getFeedback()
     override fun getPopularProblems(): Observable<List<ApiPopularProblems>> = restDataSource.getService().getPopularProblems()
     override fun getTaxonomyService(id: String): Observable<ApiTaxonomyService> = restDataSource.getService().getTaxonomyServiceById(id)
+    override fun getServiceNodeDoctors(id: String): Observable<ApiDoctors> = restDataSource.getService().getServiceNodeDoctors(id)
 }

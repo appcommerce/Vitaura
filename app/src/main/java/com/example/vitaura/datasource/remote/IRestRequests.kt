@@ -13,8 +13,6 @@ interface IRestRequests {
     fun getServiceActions(): Observable<List<ApiServiceAction>>
     @GET("/rest_mobile/services")
     fun getServices():Observable<List<ApiService>>
-    @GET("/rest_mobile/services/{id}")
-    fun getServiceById(@Path("id")id: Int): Observable<ApiService>
     @GET("/jsonapi/node/page")
     fun getPages(): Observable<ApiPages>
     @GET("/jsonapi/node/doctors?include=field_photo&filter[status][value]=1")
@@ -31,4 +29,6 @@ interface IRestRequests {
     fun getPopularProblems(): Observable<List<ApiPopularProblems>>
     @GET("/jsonapi/taxonomy_term/services")
     fun getTaxonomyServiceById(@Query("filter[drupal_internal__tid]") id: String): Observable<ApiTaxonomyService>
+    @GET("/jsonapi/node/doctors?include=field_photo")
+    fun getServiceNodeDoctors(@Query("filter[field_services.id]")id: String): Observable<ApiDoctors>
 }

@@ -13,9 +13,7 @@ class DoctorsViewModel(private val repository: IRepository): BaseViewModel() {
     private val doctors = MutableLiveData<Results<List<NodeDoctor>>>()
     private val doctor = MutableLiveData<Results<NodeDoctor>>()
     var doctorId: String? = null
-    var doctorInfo: String? = null
-    var doctorSpec: String? = null
-    var doctorEdu: String? = null
+
     fun getDoctors(): LiveData<Results<List<NodeDoctor>>> {
         repository.getNodeDoctors()
                 .subscribeOn(scheduler.io())
@@ -48,5 +46,22 @@ class DoctorsViewModel(private val repository: IRepository): BaseViewModel() {
                         }
                 ).addTo(subscription)
         return doctor
+    }
+
+    fun getDoctorsByServiceId(id: String): LiveData<Results<List<NodeDoctor>>> {
+        repository.getDoctorsByServiceId(id)
+            .subscribeOn(scheduler.io())
+            .observeOn(scheduler.ui())
+            .doOnSubscribe {
+                doctors.value = Results.Loading(null)
+            }.subscribeBy(
+                onNext = {
+                    doctors.value = Results.Success(it)
+                },
+                onError = {
+                    doctors.value = Results.Error(it)
+                }
+            ).addTo(subscription)
+        return doctors
     }
 }

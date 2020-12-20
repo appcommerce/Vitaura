@@ -137,4 +137,25 @@ class Repository(private val remoteDataSource: IDataSource): IRepository {
                 it.data?.get(0)?.attributes?.benefits?.text,
                 it.data?.get(0)?.attributes?.contraindications?.text)
         }
+
+    override fun getDoctorsByServiceId(id: String): Observable<List<NodeDoctor>> = getService(id)
+        .flatMap {
+            return@flatMap remoteDataSource.getServiceNodeDoctors(it.id!!)
+        }
+        .map {
+            return@map it.data?.map { doctor ->
+                NodeDoctor(doctor.id,
+                    doctor.attributes?.body?.text,
+                    doctor.attributes?.price,
+                    doctor.attributes?.education?.text,
+                    doctor.attributes?.information?.text,
+                    doctor.attributes?.post,
+                    doctor.attributes?.shortDescription?.text,
+                    doctor.attributes?.specialization?.text,
+                    doctor.attributes?.title,
+                    doctor.attributes?.weight,
+                    doctor.relations?.services?.service?.map { service -> service.id },
+                    it.include?.map { it.links?.photoUri?.url.orEmpty() })
+            }
+        }
 }

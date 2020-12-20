@@ -16,4 +16,5 @@ interface IRepository {
     fun getPopularProblems(): Observable<List<PopularProblems>>
     fun getServiceTypes(): Observable<List<ServiceType>>
     fun getService(id: String): Observable<Service>
+    fun getDoctorsByServiceId(id: String): Observable<List<NodeDoctor>>
 }
