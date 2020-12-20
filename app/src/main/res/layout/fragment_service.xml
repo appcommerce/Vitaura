@@ -80,6 +80,37 @@
                 android:id="@+id/service_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/message_37"
+                android:textColor="@color/titleColor"
+                android:textSize="18sp"
+                android:textAllCaps="true"
+                app:fontFamily="@font/roboto_medium_pro"
+                android:layout_marginTop="23dp"
+                android:layout_marginStart="20dp" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_doctors"
+                android:layout_marginTop="19dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/message_38"
+                android:textColor="@color/titleColor"
+                android:textSize="18sp"
+                android:textAllCaps="true"
+                app:fontFamily="@font/roboto_medium_pro"
+                android:layout_marginTop="23dp"
+                android:layout_marginStart="20dp" />
+
+            <include android:id="@+id/incFlower"
+                android:layout_gravity="bottom"
+                layout="@layout/flower_layout"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
