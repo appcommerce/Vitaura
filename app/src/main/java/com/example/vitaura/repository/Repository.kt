@@ -1,7 +1,6 @@
 package com.example.vitaura.repository
 
 import com.example.vitaura.R
-import com.example.vitaura.data.ApiPrice
 import com.example.vitaura.datasource.IDataSource
 import com.example.vitaura.pojo.*
 import com.google.gson.*
@@ -161,21 +160,23 @@ class Repository(private val remoteDataSource: IDataSource): IRepository {
             }
         }
 
-    override fun getPrices(): Observable<List<Prices>> = remoteDataSource.getPrices()
-        .map { val result = mutableListOf<Prices>()
-                for ((k, value) in it.asJsonObject.entrySet()){
+    override fun getPrices(): Observable<Pair<MutableList<Prices>, MutableList<PricesCascade>>> = remoteDataSource.getPrices()
+        .map {
+            val resultSimple = mutableListOf<Prices>()
+            val resultCascade = mutableListOf<PricesCascade>()
+                for ((_, value) in it.asJsonObject.entrySet()){
                     if (value.isJsonObject){
-                        for ((key, v) in it.get("data").asJsonObject.entrySet()){
-                            val ve = value.asJsonObject.getAsJsonObject(key)
-                            //println(ve)
-                            if (ve.get("data").isJsonArray){
-                                result.add(Gson().fromJson(ve, Prices::class.java))
+                        for ((key, _) in it.get("data").asJsonObject.entrySet()){
+                            val v = value.asJsonObject.getAsJsonObject(key)
+                            if (v.get("data").isJsonArray){
+                                resultSimple.add(Gson().fromJson(v, Prices::class.java))
+                            }
+                            if (v.get("data").isJsonObject){
+                                resultCascade.add(Gson().fromJson(v, PricesCascade::class.java))
                             }
                         }
-                        //println(k)
                     }
                 }
-            println(result)
-            return@map listOf()
+            return@map Pair(resultSimple, resultCascade)
         }
 }

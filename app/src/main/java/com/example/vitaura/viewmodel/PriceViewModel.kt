@@ -3,6 +3,7 @@ package com.example.vitaura.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.vitaura.pojo.Prices
+import com.example.vitaura.pojo.PricesCascade
 import com.example.vitaura.pojo.Results
 import com.example.vitaura.repository.IRepository
 import com.example.vitaura.viewmodel.base.BaseViewModel
@@ -10,9 +11,9 @@ import io.reactivex.rxkotlin.addTo
 import io.reactivex.rxkotlin.subscribeBy
 
 class PriceViewModel(private val repository: IRepository): BaseViewModel() {
-    private val prices = MutableLiveData<Results<List<Prices>>>()
+    private val prices = MutableLiveData<Results<Pair<MutableList<Prices>, MutableList<PricesCascade>>>>()
 
-    fun getPrices(): LiveData<Results<List<Prices>>>{
+    fun getPrices(): LiveData<Results<Pair<MutableList<Prices>, MutableList<PricesCascade>>>>{
         repository.getPrices()
             .subscribeOn(scheduler.io())
             .observeOn(scheduler.ui())
@@ -21,7 +22,7 @@ class PriceViewModel(private val repository: IRepository): BaseViewModel() {
             }
             .subscribeBy(
                 onNext = {
-                    //prices.value = Results.Success(it)
+                    prices.value = Results.Success(it)
                 },
                 onError = {
                     println(it.printStackTrace())

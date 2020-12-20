@@ -17,5 +17,5 @@ interface IRepository {
     fun getServiceTypes(): Observable<List<ServiceType>>
     fun getService(id: String): Observable<Service>
     fun getDoctorsByServiceId(id: String): Observable<List<NodeDoctor>>
-    fun getPrices(): Observable<List<Prices>>
+    fun getPrices(): Observable<Pair<MutableList<Prices>, MutableList<PricesCascade>>>
 }
