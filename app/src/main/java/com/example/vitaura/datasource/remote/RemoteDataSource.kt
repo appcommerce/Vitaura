@@ -8,7 +8,6 @@ class RemoteDataSource(private val restDataSource: RetrofitProvider): IDataSourc
     override fun getSlides(): Observable<List<ApiSlider>> = restDataSource.getService().getSlides()
     override fun getActions(): Observable<List<ApiServiceAction>> = restDataSource.getService().getServiceActions()
     override fun getServices(): Observable<List<ApiService>> = restDataSource.getService().getServices()
-    override fun getServiceById(id: Int): Observable<ApiService> = restDataSource.getService().getServiceById(id)
     override fun getPages(): Observable<ApiPages> = restDataSource.getService().getPages()
     override fun getNodeDoctors(): Observable<ApiDoctors> = restDataSource.getService().getNodeDoctors()
     override fun getGallery(): Observable<ApiGalleries> = restDataSource.getService().getGallery()
@@ -16,4 +15,5 @@ class RemoteDataSource(private val restDataSource: RetrofitProvider): IDataSourc
     override fun getDoctor(id: String): Observable<ApiCurrentDoctor> = restDataSource.getService().getDoctor(id)
     override fun getFeedback(): Observable<ApiPatients> = restDataSource.getService().getFeedback()
     override fun getPopularProblems(): Observable<List<ApiPopularProblems>> = restDataSource.getService().getPopularProblems()
+    override fun getTaxonomyService(id: String): Observable<ApiTaxonomyService> = restDataSource.getService().getTaxonomyServiceById(id)
 }

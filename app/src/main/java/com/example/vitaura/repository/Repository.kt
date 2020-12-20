@@ -30,9 +30,9 @@ class Repository(private val remoteDataSource: IDataSource): IRepository {
                 }
             }
 
-    override fun getServices(): Observable<List<Service>> = remoteDataSource.getServices()
+    override fun getServices(): Observable<List<ServiceSubMenu>> = remoteDataSource.getServices()
             .map {
-                return@map it.map { service-> Service(service.fieldMobileDescription1,
+                return@map it.map { service-> ServiceSubMenu(service.fieldMobileDescription1,
                         service.fieldMobileDescription2,
                         service.fieldMobileDescription3,
                         service.link,
@@ -42,20 +42,6 @@ class Repository(private val remoteDataSource: IDataSource): IRepository {
                         service.type,
                         service.typeWeight,
                         service.weight) }
-            }
-
-    override fun getServiceById(id: Int): Observable<Service> = remoteDataSource.getServiceById(id)
-            .map { service->
-                return@map Service(service.fieldMobileDescription1,
-                        service.fieldMobileDescription2,
-                        service.fieldMobileDescription3,
-                        service.link,
-                        service.parentTargetId,
-                        service.tid,
-                        service.title,
-                        service.type,
-                        service.typeWeight,
-                        service.weight)
             }
 
     override fun getPages(): Observable<List<Page>> = remoteDataSource.getPages()
@@ -142,4 +128,13 @@ class Repository(private val remoteDataSource: IDataSource): IRepository {
             }
         }
     }
+
+    override fun getService(id: String): Observable<Service> = remoteDataSource.getTaxonomyService(id)
+        .map {
+            return@map Service(it.data?.get(0)?.id,
+                it.data?.get(0)?.attributes?.serviceName,
+                it.data?.get(0)?.attributes?.effective?.text,
+                it.data?.get(0)?.attributes?.benefits?.text,
+                it.data?.get(0)?.attributes?.contraindications?.text)
+        }
 }

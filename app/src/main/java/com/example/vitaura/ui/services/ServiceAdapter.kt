@@ -4,15 +4,15 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.vitaura.databinding.ItemServicesBinding
-import com.example.vitaura.pojo.Service
+import com.example.vitaura.pojo.ServiceSubMenu
 
-class ServiceAdapter(private val services: List<Service>, private val listener: OnServiceSubTypeClickListener?): RecyclerView.Adapter<ServiceAdapter.ServiceViewHolder>() {
+class ServiceAdapter(private val services: List<ServiceSubMenu>, private val listener: OnServiceSubTypeClickListener?): RecyclerView.Adapter<ServiceAdapter.ServiceViewHolder>() {
     inner class ServiceViewHolder(itemViewBind: ItemServicesBinding): RecyclerView.ViewHolder(itemViewBind.root){
         private val layout = itemViewBind
-        fun bind(service: Service) = with(itemView){
+        fun bind(service: ServiceSubMenu) = with(itemView){
             layout.serviceName.text = service.title
             layout.serviceName.setOnClickListener {
-                listener?.getServiceById(service)
+                listener?.getServiceById(service.tid)
             }
         }
     }

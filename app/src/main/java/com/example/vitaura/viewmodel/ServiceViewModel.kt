@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.vitaura.pojo.Results
 import com.example.vitaura.pojo.Service
+import com.example.vitaura.pojo.ServiceSubMenu
 import com.example.vitaura.pojo.ServiceType
 import com.example.vitaura.repository.IRepository
 import com.example.vitaura.viewmodel.base.BaseViewModel
@@ -11,12 +12,13 @@ import io.reactivex.rxkotlin.addTo
 import io.reactivex.rxkotlin.subscribeBy
 
 class ServiceViewModel(private val repository: IRepository): BaseViewModel() {
-    private val services = MutableLiveData<Results<List<Service>>>()
+    private val services = MutableLiveData<Results<List<ServiceSubMenu>>>()
     private val serviceTypes = MutableLiveData<Results<List<ServiceType>>>()
+    private val service = MutableLiveData<Results<Service>>()
     var serviceTypeAlias: String? = null
     var serviceTypeImg: Int? = null
     var serviceTypeName: String? = null
-    var service: Service? = null
+    var serviceTid: String? = null
     fun getServiceTypes() : LiveData<Results<List<ServiceType>>>{
         repository.getServiceTypes()
             .subscribeOn(scheduler.io())
@@ -35,7 +37,7 @@ class ServiceViewModel(private val repository: IRepository): BaseViewModel() {
         return serviceTypes
     }
 
-    fun getServices(): LiveData<Results<List<Service>>>{
+    fun getServices(): LiveData<Results<List<ServiceSubMenu>>>{
         repository.getServices()
             .subscribeOn(scheduler.io())
             .observeOn(scheduler.ui())
@@ -51,5 +53,23 @@ class ServiceViewModel(private val repository: IRepository): BaseViewModel() {
                 }
             ).addTo(subscription)
         return services
+    }
+
+    fun getServiceById(id: String): LiveData<Results<Service>>{
+        repository.getService(id)
+            .subscribeOn(scheduler.io())
+            .observeOn(scheduler.ui())
+            .doOnSubscribe {
+                service.value = Results.Loading(null)
+            }
+            .subscribeBy(
+                onNext = {
+                    service.value = Results.Success(it)
+                },
+                onError = {
+                    service.value = Results.Error(it)
+                }
+            ).addTo(subscription)
+        return service
     }
 }

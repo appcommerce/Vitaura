@@ -12,6 +12,7 @@ import com.example.vitaura.extensions.Router
 import com.example.vitaura.extensions.viewBinding
 import com.example.vitaura.pojo.NodeDoctor
 import com.example.vitaura.pojo.Results
+import com.example.vitaura.pojo.Service
 import com.example.vitaura.ui.base.BaseFragment
 import com.example.vitaura.ui.doctors.CurrentDoctorFragment
 import com.example.vitaura.ui.doctors.DoctorsAdapter
@@ -29,7 +30,7 @@ class ServiceFragment: BaseFragment(R.layout.fragment_service), TabLayout.OnTabS
     private val docViewModel by sharedViewModel<DoctorsViewModel>()
     private var doctorsAdapter: DoctorsAdapter? = null
     private val doctorsObserver = Observer<Results<List<NodeDoctor>>>{ handleDoctors(it) }
-
+    private val serviceObserver = Observer<Results<Service>>{ handleService(it) }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initTabs()
@@ -38,12 +39,13 @@ class ServiceFragment: BaseFragment(R.layout.fragment_service), TabLayout.OnTabS
             layout.serviceAva.setImageBitmap(BitmapFactory.decodeResource(resources, it))
         }
         layout.serviceType.text = serviceViewModel.serviceTypeName
-        layout.serviceName.text = serviceViewModel.service?.title
         layout.incFlower.logInFlowerBtn.setOnClickListener {
             Router.routeFragment(requireActivity(), CallbackFragment(), R.id.main_container)
         }
         docViewModel.getDoctors().observe(viewLifecycleOwner, doctorsObserver)
-
+        serviceViewModel.serviceTid?.let {
+            serviceViewModel.getServiceById(it).observe(viewLifecycleOwner, serviceObserver)
+        }
     }
 
     private fun initTabs(){
@@ -61,6 +63,24 @@ class ServiceFragment: BaseFragment(R.layout.fragment_service), TabLayout.OnTabS
             layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
             setHasFixedSize(true)
             adapter = doctorsAdapter
+        }
+    }
+
+    private fun handleService(result: Results<Service>){
+        when(result){
+            is Results.Success ->{
+                hideLoading()
+                result.data?.let {
+                    layout.serviceName.text = it.name
+                }
+            }
+            is Results.Loading ->{
+                showLoading()
+            }
+            is Results.Error ->{
+                hideLoading()
+                handleError(result.throwable)
+            }
         }
     }
 

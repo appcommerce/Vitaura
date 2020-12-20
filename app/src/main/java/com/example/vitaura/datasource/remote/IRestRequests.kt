@@ -4,6 +4,7 @@ import com.example.vitaura.data.*
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface IRestRequests {
     @GET("/rest/slides/front")
@@ -28,4 +29,6 @@ interface IRestRequests {
     fun getFeedback(): Observable<ApiPatients>
     @GET("/rest/problems/popular_front")
     fun getPopularProblems(): Observable<List<ApiPopularProblems>>
+    @GET("/jsonapi/taxonomy_term/services")
+    fun getTaxonomyServiceById(@Query("filter[drupal_internal__tid]") id: String): Observable<ApiTaxonomyService>
 }

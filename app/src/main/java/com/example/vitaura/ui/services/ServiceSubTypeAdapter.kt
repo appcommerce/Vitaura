@@ -6,15 +6,15 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.vitaura.databinding.ItemServiceSubTypeBinding
-import com.example.vitaura.pojo.Service
+import com.example.vitaura.pojo.ServiceSubMenu
 
 class ServiceSubTypeAdapter: RecyclerView.Adapter<ServiceSubTypeAdapter.ServiceSubTypeViewHolder>() {
-    private var parentSubTypes = listOf<Service>()
-    private var childrenSubTypes = listOf<Service>()
+    private var parentSubTypes = listOf<ServiceSubMenu>()
+    private var childrenSubTypes = listOf<ServiceSubMenu>()
     private var serviceClickListener: OnServiceSubTypeClickListener? = null
     inner class ServiceSubTypeViewHolder(itemViewBind: ItemServiceSubTypeBinding): RecyclerView.ViewHolder(itemViewBind.root){
         private val layout = itemViewBind
-        fun bind(service: Service) = with(itemView){
+        fun bind(service: ServiceSubMenu) = with(itemView){
             initInnerServiceList(service)
             layout.subName.text = service.title
             layout.expandBtn.setOnCheckedChangeListener { _, isChecked ->
@@ -26,7 +26,7 @@ class ServiceSubTypeAdapter: RecyclerView.Adapter<ServiceSubTypeAdapter.ServiceS
         /**
          * Внутренний список
          */
-        private fun initInnerServiceList(service: Service){
+        private fun initInnerServiceList(service: ServiceSubMenu){
             layout.rvServiceList.apply {
                 layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
                 setHasFixedSize(true)
@@ -36,7 +36,7 @@ class ServiceSubTypeAdapter: RecyclerView.Adapter<ServiceSubTypeAdapter.ServiceS
             }
         }
     }
-    fun setMainSubTypes(list: List<Service>){
+    fun setMainSubTypes(list: List<ServiceSubMenu>){
         this.parentSubTypes = list.filter { it.parentTargetId.isNullOrEmpty() }
         this.childrenSubTypes = list
         notifyDataSetChanged()

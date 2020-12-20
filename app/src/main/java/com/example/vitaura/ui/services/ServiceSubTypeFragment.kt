@@ -12,7 +12,7 @@ import com.example.vitaura.databinding.FragmentServiceSubTypeBinding
 import com.example.vitaura.extensions.Router
 import com.example.vitaura.extensions.viewBinding
 import com.example.vitaura.pojo.Results
-import com.example.vitaura.pojo.Service
+import com.example.vitaura.pojo.ServiceSubMenu
 import com.example.vitaura.ui.base.BaseFragment
 import com.example.vitaura.ui.mail.CallbackFragment
 import com.example.vitaura.viewmodel.ServiceViewModel
@@ -22,7 +22,7 @@ class ServiceSubTypeFragment: BaseFragment(R.layout.fragment_service_sub_type), 
     private val serviceViewModel by sharedViewModel<ServiceViewModel>()
     private val layout by viewBinding(FragmentServiceSubTypeBinding::bind)
     private var serviceAdapter: ServiceSubTypeAdapter? = null
-    private val serviceObserver = Observer<Results<List<Service>>>{ handleService(it) }
+    private val serviceObserver = Observer<Results<List<ServiceSubMenu>>>{ handleService(it) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -59,7 +59,7 @@ class ServiceSubTypeFragment: BaseFragment(R.layout.fragment_service_sub_type), 
         }
     }
 
-    private fun handleService(result: Results<List<Service>>){
+    private fun handleService(result: Results<List<ServiceSubMenu>>){
         when(result){
             is Results.Success ->{
                 hideLoading()
@@ -86,9 +86,9 @@ class ServiceSubTypeFragment: BaseFragment(R.layout.fragment_service_sub_type), 
 
     }
 
-    override fun getServiceById(service: Service?) {
-        service?.let {
-            serviceViewModel.service = it
+    override fun getServiceById(serviceTid: String?) {
+        serviceTid?.let {
+            serviceViewModel.serviceTid = it
             Router.routeFragment(requireActivity(), ServiceFragment(), R.id.main_container)
         }
     }
