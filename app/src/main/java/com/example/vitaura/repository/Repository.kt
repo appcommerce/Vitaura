@@ -2,6 +2,7 @@ package com.example.vitaura.repository
 
 import com.example.vitaura.R
 import com.example.vitaura.datasource.IDataSource
+import com.example.vitaura.extensions.PriceJsonParser
 import com.example.vitaura.pojo.*
 import com.google.gson.*
 import io.reactivex.Observable
@@ -162,21 +163,6 @@ class Repository(private val remoteDataSource: IDataSource): IRepository {
 
     override fun getPrices(): Observable<Pair<MutableList<Prices>, MutableList<PricesCascade>>> = remoteDataSource.getPrices()
         .map {
-            val resultSimple = mutableListOf<Prices>()
-            val resultCascade = mutableListOf<PricesCascade>()
-                for ((_, value) in it.asJsonObject.entrySet()){
-                    if (value.isJsonObject){
-                        for ((key, _) in it.get("data").asJsonObject.entrySet()){
-                            val v = value.asJsonObject.getAsJsonObject(key)
-                            if (v.get("data").isJsonArray){
-                                resultSimple.add(Gson().fromJson(v, Prices::class.java))
-                            }
-                            if (v.get("data").isJsonObject){
-                                resultCascade.add(Gson().fromJson(v, PricesCascade::class.java))
-                            }
-                        }
-                    }
-                }
-            return@map Pair(resultSimple, resultCascade)
+            return@map PriceJsonParser.createCascadePrice(it)
         }
 }
