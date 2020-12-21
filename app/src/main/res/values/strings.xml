@@ -36,4 +36,14 @@
         Успешно отправлено</string>
     <string name="message_30">Мы свяжемся с Вами <br/>
         в ближайшее время.</string>
+    <string name="message_31">Записаться на прием</string>
+    <string name="message_32">Бережное <br/>
+        отношение <br/>
+        к вашей красоте</string>
+    <string name="message_33">Оставить отзыв</string>
+    <string name="message_34">Подробнее</string>
+    <string name="message_35">стоимость консультации</string>
+    <string name="message_36">Посмотреть</string>
+    <string name="message_37">Процедуру проводят</string>
+    <string name="message_38">Цены на процедуру</string>
 </resources>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabMedia"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tabGravity="fill"
+        app:tabIndicatorFullWidth="true"
+        app:layout_collapseMode="pin"
+        app:tabTextAppearance="@style/TabTextStyle"
+        app:tabIndicatorColor="@color/colorPrimary"
+        app:tabSelectedTextColor="@color/titleColor"
+        app:tabTextColor="@color/colorPrimary"
+        app:tabMode="fixed"/>
+    <androidx.core.widget.NestedScrollView
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <FrameLayout
+                android:id="@+id/media_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+            <include layout="@layout/flower_layout"/>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>

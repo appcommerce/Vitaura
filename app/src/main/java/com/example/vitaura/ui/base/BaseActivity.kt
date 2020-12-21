@@ -9,9 +9,14 @@ import androidx.appcompat.widget.AppCompatButton
 import androidx.core.view.GravityCompat
 import com.example.vitaura.R
 import com.example.vitaura.databinding.ActivityMainBinding
+import com.example.vitaura.extensions.Router
+import com.example.vitaura.ui.doctors.DoctorsFragment
 import com.example.vitaura.ui.feedback.FeedbackFragment
 import com.example.vitaura.ui.mail.MessageFragment
 import com.example.vitaura.ui.main.MainFragment
+import com.example.vitaura.ui.media.MediaFragment
+import com.example.vitaura.ui.price.PriceFragment
+import com.example.vitaura.ui.services.ServiceTypeFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 
@@ -24,7 +29,6 @@ class BaseActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         super.onCreate(savedInstanceState)
         setContentView(viewBind.root)
         setSupportActionBar(viewBind.toolbar)
-        supportActionBar?.title = "Главная"
         val drawerToggle = ActionBarDrawerToggle(this,
                 viewBind.drawerLayout,
                 viewBind.toolbar,
@@ -45,19 +49,36 @@ class BaseActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 viewBind.drawerLayout.closeDrawer(GravityCompat.START)
 
             }
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.main_container, MainFragment())
-            .commit()
+        if (supportFragmentManager.findFragmentById(R.id.main_container) == null){
+            Router.routeFragment(this, MainFragment(), R.id.main_container)
+        }
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         viewBind.drawerLayout.closeDrawer(GravityCompat.START)
         return when(item.itemId){
+            R.id.main ->{
+                Router.routeFragment(this, MainFragment(), R.id.main_container)
+                true
+            }
             R.id.reviews ->{
-                supportFragmentManager.beginTransaction()
-                    .replace(R.id.main_container, FeedbackFragment())
-                    .addToBackStack(null)
-                    .commit()
+                Router.routeFragment(this, FeedbackFragment(), R.id.main_container)
+                true
+            }
+            R.id.doctors ->{
+                Router.routeFragment(this, DoctorsFragment(), R.id.main_container)
+                true
+            }
+            R.id.services -> {
+                Router.routeFragment(this, ServiceTypeFragment(), R.id.main_container)
+                true
+            }
+            R.id.prices -> {
+                Router.routeFragment(this, PriceFragment(), R.id.main_container)
+                true
+            }
+            R.id.media -> {
+                Router.routeFragment(this, MediaFragment(), R.id.main_container)
                 true
             }
             else -> false
@@ -79,8 +100,6 @@ class BaseActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             else -> false
         }
     }
-
-
 
     override fun onBackPressed() {
         if (viewBind.drawerLayout.isDrawerOpen(GravityCompat.START)) {

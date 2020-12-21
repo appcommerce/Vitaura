@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/type_img"
+            android:layout_width="126dp"
+            android:layout_height="126dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/face"
+            android:layout_marginTop="25dp"/>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/type_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="14dp"
+            android:textColor="@color/docPrice"
+            android:textSize="19sp"
+            app:textAllCaps="true"
+            tools:text="Лицо"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_sub_types"
+            android:layout_weight="1"
+            android:layout_marginTop="23dp"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"/>
+        <include android:id="@+id/flowerBottom"
+            layout="@layout/flower_layout"/>
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

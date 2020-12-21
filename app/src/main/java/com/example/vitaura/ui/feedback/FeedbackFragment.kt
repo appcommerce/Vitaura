@@ -2,16 +2,18 @@ package com.example.vitaura.ui.feedback
 
 import android.os.Bundle
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.vitaura.R
 import com.example.vitaura.pojo.Results
 import com.example.vitaura.databinding.FragmentFeedbackBinding
+import com.example.vitaura.extensions.Router
 import com.example.vitaura.extensions.viewBinding
 import com.example.vitaura.pojo.Feedback
 import com.example.vitaura.ui.base.BaseFragment
+import com.example.vitaura.ui.mail.CallbackFragment
+import com.example.vitaura.ui.mail.SendFeedFragment
 import com.example.vitaura.viewmodel.MainViewModel
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -24,6 +26,12 @@ class FeedbackFragment: BaseFragment(R.layout.fragment_feedback) {
         super.onViewCreated(view, savedInstanceState)
         initFeedbackList()
         mainViewModel.getFeedback().observe(viewLifecycleOwner, feedsObserver)
+        layout.incFlower.logInFlowerBtn.setOnClickListener {
+            Router.routeFragment(requireActivity(), CallbackFragment(), R.id.main_container)
+        }
+        layout.sendFeed.setOnClickListener {
+            Router.routeFragment(requireActivity(), SendFeedFragment(), R.id.main_container)
+        }
     }
 
     /**

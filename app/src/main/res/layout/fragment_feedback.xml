@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools">
@@ -7,6 +9,22 @@
         android:id="@+id/rv_feeds"
         tools:listitem="@layout/item_feedback"
         tools:itemCount="3"
+        android:layout_weight="1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-</FrameLayout>
+        android:layout_height="0dp"/>
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/send_feed"
+        android:layout_width="225dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="10dp"
+        android:textColor="@color/white"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/message_33"
+        android:background="@drawable/sign_up_button"/>
+    <include android:id="@+id/incFlower"
+        android:layout_gravity="bottom"
+        layout="@layout/flower_layout"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent" />
+</LinearLayout>

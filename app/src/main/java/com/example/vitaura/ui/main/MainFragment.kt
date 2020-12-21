@@ -2,6 +2,7 @@ package com.example.vitaura.ui.main
 
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.example.vitaura.R
@@ -35,6 +36,14 @@ class MainFragment: BaseFragment(R.layout.fragment_main), TabLayout.OnTabSelecte
         sliderAdapter?.let {
             layout.mainSlider.setSliderAdapter(it)
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        (requireActivity() as AppCompatActivity)
+            .supportActionBar?.apply {
+                title = "Главная"
+            }
     }
 
     private fun initTabs(){
@@ -74,21 +83,17 @@ class MainFragment: BaseFragment(R.layout.fragment_main), TabLayout.OnTabSelecte
         sliderAdapter?.addSlides(result)
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        layout.mainTab.removeOnTabSelectedListener(this)
-    }
-
     override fun onTabSelected(tab: TabLayout.Tab?) {
         when(tab?.position){
-            0 ->{
-                Router.routeTabFragment(this, InfoFragment(), R.id.tab_container)
-            }
-            1 ->{
-                Router.routeTabFragment(this, FeedbackFragment(), R.id.tab_container)
-            }
+            0 -> Router.routeTabFragment(this, InfoFragment(), R.id.tab_container)
+            1 -> Router.routeTabFragment(this, FeedbackFragment(), R.id.tab_container)
         }
     }
     override fun onTabUnselected(tab: TabLayout.Tab?) {}
     override fun onTabReselected(tab: TabLayout.Tab?) {}
+
+    override fun onDestroyView() {
+        layout.mainTab.removeOnTabSelectedListener(this)
+        super.onDestroyView()
+    }
 }

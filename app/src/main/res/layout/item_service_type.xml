@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="@drawable/service_card_bg"
+    android:gravity="center"
+    android:layout_marginStart="40dp"
+    android:layout_marginEnd="40dp"
+    android:layout_marginTop="11dp"
+    android:layout_marginBottom="11dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/service_pic"
+        android:layout_marginTop="13dp"
+        android:layout_width="126dp"
+        tools:src="@drawable/face"
+        android:layout_height="126dp"/>
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="13dp"
+        android:textColor="@color/white"
+        android:drawableEnd="@drawable/ic_add_circle_white"
+        android:drawablePadding="10dp"
+        android:textSize="18sp"
+        android:textAllCaps="true"
+        android:gravity="center"
+        tools:text="Лицо"/>
+</LinearLayout>

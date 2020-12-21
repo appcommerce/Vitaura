@@ -2,9 +2,11 @@ package com.example.vitaura.ui.mail
 
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import co.nedim.maildroidx.MaildroidX
 import com.example.vitaura.R
 import com.example.vitaura.databinding.FragmentCallbackBinding
+import com.example.vitaura.extensions.Router
 import com.example.vitaura.extensions.SMTPClient
 import com.example.vitaura.extensions.viewBinding
 import com.example.vitaura.ui.base.BaseFragment
@@ -22,6 +24,9 @@ class CallbackFragment: BaseFragment(R.layout.fragment_callback) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        (requireActivity() as AppCompatActivity)
+                .supportActionBar
+                ?.title = "Запись на приём"
         layout.incCall.callbackSend.setOnClickListener {
             showLoading()
             val callback = "${layout.incCall.nameCallback}" +
@@ -37,9 +42,7 @@ class CallbackFragment: BaseFragment(R.layout.fragment_callback) {
         override val timeout: Long = 3000
         override fun onSuccess() {
             hideLoading()
-            requireActivity().supportFragmentManager
-                    .beginTransaction()
-                    .replace(R.id.main_container, SuccessFragment())
+            Router.routeFragment(requireActivity(), SuccessFragment(), R.id.main_container)
         }
         override fun onFail(errorMessage: String) {
             hideLoading()
