@@ -10,6 +10,7 @@ object PriceJsonParser{
         val cascadeArray = JsonArray()
         val resultSimple = mutableListOf<Prices>()
         val resultCascade = mutableListOf<PricesCascade>()
+        //TODO: Нужно пофиксить формирование cascadeObject
         for ((_, value) in json.asJsonObject.entrySet()){
             if (value.isJsonObject){
                 for ((key, _) in json.get("data").asJsonObject.entrySet()){

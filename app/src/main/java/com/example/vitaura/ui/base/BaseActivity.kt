@@ -14,6 +14,7 @@ import com.example.vitaura.ui.doctors.DoctorsFragment
 import com.example.vitaura.ui.feedback.FeedbackFragment
 import com.example.vitaura.ui.mail.MessageFragment
 import com.example.vitaura.ui.main.MainFragment
+import com.example.vitaura.ui.media.MediaFragment
 import com.example.vitaura.ui.price.PriceFragment
 import com.example.vitaura.ui.services.ServiceTypeFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -76,6 +77,10 @@ class BaseActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 Router.routeFragment(this, PriceFragment(), R.id.main_container)
                 true
             }
+            R.id.media -> {
+                Router.routeFragment(this, MediaFragment(), R.id.main_container)
+                true
+            }
             else -> false
         }
     }
@@ -95,8 +100,6 @@ class BaseActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             else -> false
         }
     }
-
-
 
     override fun onBackPressed() {
         if (viewBind.drawerLayout.isDrawerOpen(GravityCompat.START)) {
