@@ -1,6 +1,7 @@
 package com.example.vitaura.ui.price
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -37,13 +38,19 @@ class SecondLevelPriceAdapter(private val secondLevelList: List<Any>): RecyclerV
             if (secondLevel is PricesCascade.Data){
                 initCascadeLevel(secondLevel)
             }
+            layout.showThreeLevel.setOnCheckedChangeListener { _, isChecked ->
+                if (isChecked) layout.rvThreeLevel.visibility = View.VISIBLE
+                else layout.rvThreeLevel.visibility = View.GONE
+            }
         }
         private fun initCascadeLevel(secondLevel: PricesCascade.Data) {
             layout.nameCascade.text = secondLevel.name
-            layout.rvThreeLevel.apply {
-                layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
-                setHasFixedSize(true)
-
+            secondLevel.data?.let {
+                layout.rvThreeLevel.apply {
+                    layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+                    setHasFixedSize(true)
+                    adapter = ThreeLevelPriceAdapter(it)
+                }
             }
         }
     }
