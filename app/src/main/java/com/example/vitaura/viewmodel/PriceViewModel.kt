@@ -25,7 +25,6 @@ class PriceViewModel(private val repository: IRepository): BaseViewModel() {
                     prices.value = Results.Success(it)
                 },
                 onError = {
-                    println(it.printStackTrace())
                     prices.value = Results.Error(it)
                 }
             ).addTo(subscription)
