@@ -19,4 +19,6 @@ class RemoteDataSource(private val restDataSource: RetrofitProvider): IDataSourc
     override fun getTaxonomyService(id: String): Observable<ApiTaxonomyService> = restDataSource.getService().getTaxonomyServiceById(id)
     override fun getServiceNodeDoctors(id: String): Observable<ApiDoctors> = restDataSource.getService().getServiceNodeDoctors(id)
     override fun getPrices(): Observable<JsonObject> = restDataSource.getService().getPrices()
+    override fun getVideoAlbums(): Observable<ApiVideoAlbums> = restDataSource.getService().getVideoAlbums()
+    override fun getVideo(id: String): Observable<ApiVideo> = restDataSource.getService().getVideo(id)
 }

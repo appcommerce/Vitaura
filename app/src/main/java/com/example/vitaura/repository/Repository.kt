@@ -74,16 +74,12 @@ class Repository(private val remoteDataSource: IDataSource): IRepository {
 
     override fun getGallery(): Observable<List<Gallery>> = remoteDataSource.getGallery()
             .map {
-                it.galleries?.map { gallery->
-                    Gallery(gallery.attributes?.title,
-                            gallery.relationship?.galleryImageField?.files?.map { image->
-                                Image(image.id, image.attributes?.uri?.url) })
-                }
+                it.include?.map { url-> Gallery(url.link?.photo?.url) }
             }
 
-    override fun getChangeGallery(): Observable<List<ChangeFile>> = remoteDataSource.getChangeGallery()
+    override fun getChangeGallery(): Observable<List<Gallery>> = remoteDataSource.getChangeGallery()
             .map {
-                it.map { file-> ChangeFile(file.url, file.title) }
+                it.map { file-> Gallery(file.url) }
             }
 
     override fun getDoctor(id: String): Observable<NodeDoctor> = remoteDataSource.getDoctor(id)
@@ -165,4 +161,22 @@ class Repository(private val remoteDataSource: IDataSource): IRepository {
         .map {
             return@map PriceJsonParser.createCascadePrice(it)
         }
+
+    override fun getVideoAlbums(): Observable<List<VideoAlbums>> = remoteDataSource.getVideoAlbums()
+            .map {
+                return@map it.data?.map { video-> VideoAlbums(video.id,
+                        video.attributes?.title,
+                        video.attributes?.youtube?.url,
+                        video.attributes?.youtube?.id)
+                }
+            }
+
+    override fun getVideo(id: String): Observable<VideoAlbums> = remoteDataSource.getVideo(id)
+            .map {
+                return@map VideoAlbums(it.data?.id,
+                        it.data?.attributes?.title,
+                it.data?.attributes?.youtube?.url,
+                it.data?.attributes?.youtube?.id)
+            }
+
 }

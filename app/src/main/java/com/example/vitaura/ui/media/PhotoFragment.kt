@@ -6,42 +6,44 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.vitaura.R
-import com.example.vitaura.databinding.FragmentMediaVideoBinding
-import com.example.vitaura.extensions.Router
+import com.example.vitaura.databinding.FragmentPhotosBinding
 import com.example.vitaura.extensions.viewBinding
+import com.example.vitaura.pojo.Gallery
 import com.example.vitaura.pojo.Results
-import com.example.vitaura.pojo.VideoAlbums
 import com.example.vitaura.ui.base.BaseFragment
 import com.example.vitaura.viewmodel.MediaViewModel
 import org.koin.android.viewmodel.ext.android.sharedViewModel
 
-class MediaVideoFragment: BaseFragment(R.layout.fragment_media_video), OnVideoClickListener {
-    private val layout by viewBinding(FragmentMediaVideoBinding::bind)
+class PhotoFragment: BaseFragment(R.layout.fragment_photos) {
+    private val layout by viewBinding(FragmentPhotosBinding::bind)
     private val mediaViewModel by sharedViewModel<MediaViewModel>()
-    private val observerVideo = Observer<Results<List<VideoAlbums>>>{ handleAlbums(it) }
-    private var albumAdapter: VideoAlbumAdapter? = null
+    private val observerPhotos = Observer<Results<List<Gallery>>>{ handlePhotos(it) }
+    private var photoAdapter: PhotoAdapter? = null
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initAlbumsList()
-        mediaViewModel.getVideoAlbums().observe(viewLifecycleOwner, observerVideo)
-    }
-
-    private fun initAlbumsList() {
-        albumAdapter = VideoAlbumAdapter()
-        albumAdapter?.setVideoListener(this)
-        layout.rvVideoAlbums.apply {
-            layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
-            setHasFixedSize(true)
-            adapter = albumAdapter
+        initPhotosList()
+        when(mediaViewModel.albumId){
+            "a4e3691a-17ba-4b6b-8653-439382d67f4a" -> mediaViewModel.getClinicPhotos().observe(viewLifecycleOwner, observerPhotos)
+            "do-posle" -> mediaViewModel.getChangeGallery().observe(viewLifecycleOwner, observerPhotos)
+            "gracia" -> mediaViewModel.getChampionshipPhotos().observe(viewLifecycleOwner, observerPhotos)
         }
     }
 
-    private fun handleAlbums(result: Results<List<VideoAlbums>>) {
+    private fun initPhotosList() {
+        photoAdapter = PhotoAdapter()
+        layout.rvClinicPh.apply {
+            layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+            setHasFixedSize(true)
+            adapter = photoAdapter
+        }
+    }
+
+    private fun handlePhotos(result: Results<List<Gallery>>){
         when(result){
             is Results.Success ->{
                 hideLoading()
                 result.data?.let {
-                    albumAdapter?.setAlbums(it)
+                    photoAdapter?.setGallery(it)
                 }
             }
             is Results.Loading ->{
@@ -60,10 +62,5 @@ class MediaVideoFragment: BaseFragment(R.layout.fragment_media_video), OnVideoCl
 
     override fun hideLoading() {
 
-    }
-
-    override fun openVideo(id: String) {
-        mediaViewModel.videoId = id
-        Router.routeFragment(requireActivity(), VideoFragment(), R.id.main_container)
     }
 }
