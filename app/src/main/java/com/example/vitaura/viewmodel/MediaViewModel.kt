@@ -15,6 +15,7 @@ class MediaViewModel(private val repository: IRepository): BaseViewModel() {
     private val videoAlbums = MutableLiveData<Results<List<VideoAlbums>>>()
     private val video = MutableLiveData<Results<VideoAlbums>>()
     var albumId = ""
+    var videoId = ""
 
     fun getClinicPhotos(): LiveData<Results<List<Gallery>>>{
         repository.getGallery()

@@ -9,5 +9,5 @@ data class ApiVideo(@Expose @SerializedName("data")val data: Data?){
     data class Attributes(@Expose @SerializedName("title")val title: String?,
                           @Expose @SerializedName("field_youtube")val youtube: Youtube?)
     data class Youtube(@Expose @SerializedName("input")val url: String?,
-                       @Expose @SerializedName("id")val id: String?)
+                       @Expose @SerializedName("video_id")val id: String?)
 }

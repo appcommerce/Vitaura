@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.vitaura.R
 import com.example.vitaura.databinding.FragmentMediaVideoBinding
+import com.example.vitaura.extensions.Router
 import com.example.vitaura.extensions.viewBinding
 import com.example.vitaura.pojo.Results
 import com.example.vitaura.pojo.VideoAlbums
@@ -62,6 +63,7 @@ class MediaVideoFragment: BaseFragment(R.layout.fragment_media_video), OnVideoCl
     }
 
     override fun openVideo(id: String) {
-
+        mediaViewModel.videoId = id
+        Router.routeFragment(requireActivity(), VideoFragment(), R.id.main_container)
     }
 }
