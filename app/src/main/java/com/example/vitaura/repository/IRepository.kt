@@ -10,7 +10,7 @@ interface IRepository {
     fun getPages(): Observable<List<Page>>
     fun getNodeDoctors(): Observable<List<NodeDoctor>>
     fun getGallery(): Observable<List<Gallery>>
-    fun getChangeGallery(): Observable<List<ChangeFile>>
+    fun getChangeGallery(): Observable<List<Gallery>>
     fun getDoctor(id: String): Observable<NodeDoctor>
     fun getFeedback(): Observable<List<Feedback>>
     fun getPopularProblems(): Observable<List<PopularProblems>>

@@ -24,7 +24,7 @@ class PhotoFragment: BaseFragment(R.layout.fragment_photos) {
         initPhotosList()
         when(mediaViewModel.albumId){
             "a4e3691a-17ba-4b6b-8653-439382d67f4a" -> mediaViewModel.getClinicPhotos().observe(viewLifecycleOwner, observerPhotos)
-//            "do-posle" -> "fdsfdsf"
+            "do-posle" -> mediaViewModel.getChangeGallery().observe(viewLifecycleOwner, observerPhotos)
 //            "gracia" -> "dsfsdf"
         }
     }

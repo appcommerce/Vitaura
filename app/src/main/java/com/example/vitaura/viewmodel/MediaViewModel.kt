@@ -29,4 +29,21 @@ class MediaViewModel(private val repository: IRepository): BaseViewModel() {
                 ).addTo(subscription)
         return photos
     }
+
+    fun getChangeGallery(): LiveData<Results<List<Gallery>>>{
+        repository.getChangeGallery()
+                .subscribeOn(scheduler.io())
+                .observeOn(scheduler.ui())
+                .doOnSubscribe {
+                    photos.value = Results.Loading(null)
+                }.subscribeBy(
+                        onNext = {
+                            photos.value = Results.Success(it)
+                        },
+                        onError = {
+                            photos.value = Results.Error(it)
+                        }
+                ).addTo(subscription)
+        return photos
+    }
 }

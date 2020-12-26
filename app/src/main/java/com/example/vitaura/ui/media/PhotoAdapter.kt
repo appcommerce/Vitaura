@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.vitaura.databinding.ItemPhotosBinding
+import com.example.vitaura.extensions.Constants
 import com.example.vitaura.pojo.Gallery
 import com.squareup.picasso.Picasso
 
@@ -11,9 +12,14 @@ class PhotoAdapter: RecyclerView.Adapter<PhotoAdapter.PhotoViewHolder>() {
     private var gallery = listOf<Gallery>()
     inner class PhotoViewHolder(itemViewBind: ItemPhotosBinding): RecyclerView.ViewHolder(itemViewBind.root){
         private val layout = itemViewBind
-        fun bind(photo: Gallery) = Picasso.get()
-                .load(photo.images)
-                .into(layout.picture)
+        fun bind(photo: Gallery) = with(itemView){
+            val link = if (photo.images?.startsWith("/", false)!!){
+                Constants.SERVER_URL+photo.images
+            } else photo.images
+            Picasso.get()
+                    .load(link)
+                    .into(layout.picture)
+        }
     }
     fun setGallery(list: List<Gallery>){
         this.gallery = list
