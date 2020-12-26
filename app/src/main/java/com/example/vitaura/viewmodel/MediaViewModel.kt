@@ -46,4 +46,19 @@ class MediaViewModel(private val repository: IRepository): BaseViewModel() {
                 ).addTo(subscription)
         return photos
     }
+
+    fun getChampionshipPhotos(): LiveData<Results<List<Gallery>>>{
+        photos.value = Results.Success(listOf(
+                Gallery("/sites/default/files/inline-images/_MG_2249%20copy.jpg"),
+                Gallery("/sites/default/files/inline-images/_MG_2200%20copy.jpg"),
+                Gallery("/sites/default/files/inline-images/_MG_2129%20copy.jpg"),
+                Gallery("/sites/default/files/inline-images/_MG_2135%20copy.jpg"),
+                Gallery("/sites/default/files/inline-images/_MG_2167%20copy.jpg"),
+                Gallery("/sites/default/files/inline-images/_MG_2215%20copy.jpg"),
+                Gallery("/sites/default/files/inline-images/_MG_2216%20copy.jpg"),
+                Gallery("/sites/default/files/inline-images/_MG_2069%20copy.jpg"),
+                Gallery("/sites/default/files/inline-images/_MG_2235%20copy.jpg")
+        ))
+        return photos
+    }
 }
