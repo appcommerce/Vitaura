@@ -20,7 +20,7 @@ interface IRestRequests {
     fun getNodeDoctors(): Observable<ApiDoctors>
     @GET("/jsonapi/node/doctors/{id}?include=field_photo")
     fun getDoctor(@Path("id")id: String):Observable<ApiCurrentDoctor>
-    @GET("/jsonapi/node/gallery")
+    @GET("/jsonapi/node/gallery/a4e3691a-17ba-4b6b-8653-439382d67f4a?include=field_gallery_image")
     fun getGallery(): Observable<ApiGalleries>
     @GET("/rest/do-i-posle")
     fun getChangeGallery(): Observable<List<ApiChangeFile>>

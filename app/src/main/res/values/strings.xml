@@ -32,13 +32,13 @@
     <string name="message_26">Новый отзыв</string>
     <string name="message_27">Сообщение отправлено</string>
     <string name="message_28">Новая запись на приём</string>
-    <string name="message_29">Ваше сообщение <br/>
+    <string name="message_29">Ваше сообщение\n
         Успешно отправлено</string>
-    <string name="message_30">Мы свяжемся с Вами <br/>
+    <string name="message_30">Мы свяжемся с Вами\n
         в ближайшее время.</string>
     <string name="message_31">Записаться на прием</string>
-    <string name="message_32">Бережное <br/>
-        отношение <br/>
+    <string name="message_32">Бережное\n
+        отношение\n
         к вашей красоте</string>
     <string name="message_33">Оставить отзыв</string>
     <string name="message_34">Подробнее</string>
@@ -46,4 +46,10 @@
     <string name="message_36">Посмотреть</string>
     <string name="message_37">Процедуру проводят</string>
     <string name="message_38">Цены на процедуру</string>
+    <string name="message_39">Фотогалерея нашей клиники\n аппаратной косметологии и\n эстетической медицины\n VITAURA.</string>
+    <string name="message_40">Фото клиники</string>
+    <string name="message_41">Фото до и после</string>
+    <string name="message_42">Наше портфолио. Примеры\n работ и результатов "до" и\n "после" проведения процедур\n специалистами нашей\n клиники.</string>
+    <string name="message_43">Премия грация</string>
+    <string name="message_44">Победа в номинации "Лучшая\n клиника эстетической\n медицины"</string>
 </resources>

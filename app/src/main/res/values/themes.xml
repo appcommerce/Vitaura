@@ -13,7 +13,7 @@
         <item name="spinBars">true</item>
     </style>
     <style name="TabTextStyle" parent="TextAppearance.AppCompat">
-        <item name="android:textSize">12sp</item>
+        <item name="android:textSize">14sp</item>
         <item name="tabTextColor">@color/colorPrimary</item>
     </style>
 </resources>
