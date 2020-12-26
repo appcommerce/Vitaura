@@ -161,4 +161,22 @@ class Repository(private val remoteDataSource: IDataSource): IRepository {
         .map {
             return@map PriceJsonParser.createCascadePrice(it)
         }
+
+    override fun getVideoAlbums(): Observable<List<VideoAlbums>> = remoteDataSource.getVideoAlbums()
+            .map {
+                return@map it.data?.map { video-> VideoAlbums(video.id,
+                        video.attributes?.title,
+                        video.attributes?.youtube?.url,
+                        video.attributes?.youtube?.id)
+                }
+            }
+
+    override fun getVideo(id: String): Observable<VideoAlbums> = remoteDataSource.getVideo(id)
+            .map {
+                return@map VideoAlbums(it.data?.id,
+                        it.data?.attributes?.title,
+                it.data?.attributes?.youtube?.url,
+                it.data?.attributes?.youtube?.id)
+            }
+
 }

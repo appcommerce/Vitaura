@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.vitaura.pojo.Gallery
 import com.example.vitaura.pojo.Results
+import com.example.vitaura.pojo.VideoAlbums
 import com.example.vitaura.repository.IRepository
 import com.example.vitaura.viewmodel.base.BaseViewModel
 import io.reactivex.rxkotlin.addTo
@@ -11,6 +12,8 @@ import io.reactivex.rxkotlin.subscribeBy
 
 class MediaViewModel(private val repository: IRepository): BaseViewModel() {
     private val photos = MutableLiveData<Results<List<Gallery>>>()
+    private val videoAlbums = MutableLiveData<Results<List<VideoAlbums>>>()
+    private val video = MutableLiveData<Results<VideoAlbums>>()
     var albumId = ""
 
     fun getClinicPhotos(): LiveData<Results<List<Gallery>>>{
@@ -60,5 +63,39 @@ class MediaViewModel(private val repository: IRepository): BaseViewModel() {
                 Gallery("/sites/default/files/inline-images/_MG_2235%20copy.jpg")
         ))
         return photos
+    }
+
+    fun getVideoAlbums(): LiveData<Results<List<VideoAlbums>>>{
+        repository.getVideoAlbums()
+                .subscribeOn(scheduler.io())
+                .observeOn(scheduler.ui())
+                .doOnSubscribe {
+                    videoAlbums.value = Results.Loading(null)
+                }.subscribeBy(
+                        onNext = {
+                            videoAlbums.value = Results.Success(it)
+                        },
+                        onError = {
+                            videoAlbums.value = Results.Error(it)
+                        }
+                ).addTo(subscription)
+        return videoAlbums
+    }
+
+    fun getVideo(id: String): LiveData<Results<VideoAlbums>>{
+        repository.getVideo(id)
+                .subscribeOn(scheduler.io())
+                .observeOn(scheduler.ui())
+                .doOnSubscribe {
+                    video.value = Results.Loading(null)
+                }.subscribeBy(
+                        onNext = {
+                            video.value = Results.Success(it)
+                        },
+                        onError = {
+                            video.value = Results.Error(it)
+                        }
+                ).addTo(subscription)
+        return video
     }
 }

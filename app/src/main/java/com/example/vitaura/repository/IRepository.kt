@@ -18,4 +18,6 @@ interface IRepository {
     fun getService(id: String): Observable<Service>
     fun getDoctorsByServiceId(id: String): Observable<List<NodeDoctor>>
     fun getPrices(): Observable<Pair<MutableList<Prices>, MutableList<PricesCascade>>>
+    fun getVideoAlbums(): Observable<List<VideoAlbums>>
+    fun getVideo(id: String): Observable<VideoAlbums>
 }
