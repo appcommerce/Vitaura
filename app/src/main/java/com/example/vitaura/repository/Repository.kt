@@ -21,9 +21,9 @@ class Repository(private val remoteDataSource: IDataSource): IRepository {
                 }
             }
 
-    override fun getActions(): Observable<List<Action>> = remoteDataSource.getActions()
+    override fun getServiceActions(): Observable<List<ServiceAction>> = remoteDataSource.getServiceActions()
             .map {
-                return@map it.map { action-> Action(action.body,
+                return@map it.map { action-> ServiceAction(action.body,
                         action.fieldImage,
                         action.fieldImage2,
                         action.fieldImagePreview,
@@ -179,4 +179,14 @@ class Repository(private val remoteDataSource: IDataSource): IRepository {
                 it.data?.attributes?.youtube?.id)
             }
 
+    override fun getActions(): Observable<List<Action>> = remoteDataSource.getAllActions()
+        .map {
+                val actions = it.data?.map { action->
+                    Action(action.id, action.attributes?.title, action.attributes?.body?.value, null)
+                }?.toMutableList() ?: mutableListOf()
+                for (i in actions.indices){
+                    actions[i].imgUrl = it.photos?.get(i)?.links?.image?.url
+                }
+            return@map actions
+        }
 }

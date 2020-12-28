@@ -10,6 +10,7 @@ import androidx.core.view.GravityCompat
 import com.example.vitaura.R
 import com.example.vitaura.databinding.ActivityMainBinding
 import com.example.vitaura.extensions.Router
+import com.example.vitaura.ui.actions.ActionsFragment
 import com.example.vitaura.ui.doctors.DoctorsFragment
 import com.example.vitaura.ui.feedback.FeedbackFragment
 import com.example.vitaura.ui.mail.MessageFragment
@@ -79,6 +80,10 @@ class BaseActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
             R.id.media -> {
                 Router.routeFragment(this, MediaFragment(), R.id.main_container)
+                true
+            }
+            R.id.special -> {
+                Router.routeFragment(this, ActionsFragment(), R.id.main_container)
                 true
             }
             else -> false

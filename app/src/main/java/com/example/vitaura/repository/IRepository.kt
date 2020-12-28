@@ -5,7 +5,7 @@ import io.reactivex.Observable
 
 interface IRepository {
     fun getSlides(): Observable<List<Slider>>
-    fun getActions(): Observable<List<Action>>
+    fun getServiceActions(): Observable<List<ServiceAction>>
     fun getServices(): Observable<List<ServiceSubMenu>>
     fun getPages(): Observable<List<Page>>
     fun getNodeDoctors(): Observable<List<NodeDoctor>>
@@ -20,4 +20,5 @@ interface IRepository {
     fun getPrices(): Observable<Pair<MutableList<Prices>, MutableList<PricesCascade>>>
     fun getVideoAlbums(): Observable<List<VideoAlbums>>
     fun getVideo(id: String): Observable<VideoAlbums>
+    fun getActions(): Observable<List<Action>>
 }

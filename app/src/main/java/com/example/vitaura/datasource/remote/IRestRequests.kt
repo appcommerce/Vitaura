@@ -38,4 +38,6 @@ interface IRestRequests {
     fun getVideoAlbums(): Observable<ApiVideoAlbums>
     @GET("/jsonapi/node/video/{id}")
     fun getVideo(@Path("id") id: String): Observable<ApiVideo>
+    @GET("/jsonapi/node/actions?filter[status][value]=1&filter[datefilter][condition][path]=field_action_date&filter[datefilter][condition][operator]=>%3D&filter[datefilter][condition][value]=2020-12-27&include=field_image&fields[node--actions]=title%2Cpath%2Cbody&fields[file--file]=derivatives%2Calt%2Ctitle&sort=-created")
+    fun getActions(): Observable<ApiActions>
 }

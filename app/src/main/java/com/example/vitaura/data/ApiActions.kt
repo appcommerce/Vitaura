@@ -1,0 +1,16 @@
+package com.example.vitaura.data
+
+import com.google.gson.annotations.Expose
+import com.google.gson.annotations.SerializedName
+
+data class ApiActions(@Expose @SerializedName("data")val data: List<Data>?,
+                      @Expose @SerializedName("included")val photos: List<Included>?){
+    data class Included(@Expose @SerializedName("links")val links: Links?)
+    data class Links(@Expose @SerializedName("photo_column_3")val image: Image?)
+    data class Image(@Expose @SerializedName("href")val url: String?)
+    data class Data(@Expose @SerializedName("id")val id: String?,
+                    @Expose @SerializedName("attributes")val attributes: Attributes?)
+    data class Attributes(@Expose @SerializedName("title")val title: String?,
+                          @Expose @SerializedName("body")val body: Body?)
+    data class Body(@Expose @SerializedName("value")val value: String?)
+}
