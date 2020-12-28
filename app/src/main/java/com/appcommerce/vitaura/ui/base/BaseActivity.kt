@@ -12,6 +12,7 @@ import com.appcommerce.vitaura.databinding.ActivityMainBinding
 import com.appcommerce.vitaura.extensions.Router
 import com.appcommerce.vitaura.ui.about.AboutFragment
 import com.appcommerce.vitaura.ui.actions.ActionsFragment
+import com.appcommerce.vitaura.ui.contacts.ContactsFragment
 import com.appcommerce.vitaura.ui.doctors.DoctorsFragment
 import com.appcommerce.vitaura.ui.feedback.FeedbackFragment
 import com.appcommerce.vitaura.ui.mail.MessageFragment
@@ -89,6 +90,10 @@ class BaseActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
             R.id.about -> {
                 Router.routeFragment(this, AboutFragment(), R.id.main_container)
+                true
+            }
+            R.id.contacts -> {
+                Router.routeFragment(this, ContactsFragment(), R.id.main_container)
                 true
             }
             else -> false
