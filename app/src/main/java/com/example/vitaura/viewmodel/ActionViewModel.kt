@@ -11,6 +11,7 @@ import io.reactivex.rxkotlin.subscribeBy
 
 class ActionViewModel(private val repository: IRepository): BaseViewModel() {
     private val actions = MutableLiveData<Results<List<Action>>>()
+    private val action = MutableLiveData<Results<Action>>()
     var actionId = ""
 
     fun getActions(): LiveData<Results<List<Action>>>{
@@ -29,5 +30,10 @@ class ActionViewModel(private val repository: IRepository): BaseViewModel() {
                 }
             ).addTo(subscription)
         return actions
+    }
+
+    fun getAction(id: String): LiveData<Results<Action>>{
+
+        return action
     }
 }

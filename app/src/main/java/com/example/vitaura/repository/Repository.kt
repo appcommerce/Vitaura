@@ -182,10 +182,11 @@ class Repository(private val remoteDataSource: IDataSource): IRepository {
     override fun getActions(): Observable<List<Action>> = remoteDataSource.getAllActions()
         .map {
                 val actions = it.data?.map { action->
-                    Action(action.id, action.attributes?.title, action.attributes?.body?.value, null)
+                    Action(action.id, action.attributes?.title, action.attributes?.body?.value, null, null)
                 }?.toMutableList() ?: mutableListOf()
                 for (i in actions.indices){
-                    actions[i].imgUrl = it.photos?.get(i)?.links?.image?.url
+                    actions[i].imgUrlMin = it.photos?.get(i)?.links?.imageMin?.url
+                    actions[i].imgUrlMax = it.photos?.get(i)?.links?.imageMax?.url
                 }
             return@map actions
         }

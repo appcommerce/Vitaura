@@ -6,7 +6,8 @@ import com.google.gson.annotations.SerializedName
 data class ApiActions(@Expose @SerializedName("data")val data: List<Data>?,
                       @Expose @SerializedName("included")val photos: List<Included>?){
     data class Included(@Expose @SerializedName("links")val links: Links?)
-    data class Links(@Expose @SerializedName("photo_column_3")val image: Image?)
+    data class Links(@Expose @SerializedName("photo_column_2")val imageMin: Image?,
+                     @Expose @SerializedName("main_slider")val imageMax: Image?)
     data class Image(@Expose @SerializedName("href")val url: String?)
     data class Data(@Expose @SerializedName("id")val id: String?,
                     @Expose @SerializedName("attributes")val attributes: Attributes?)

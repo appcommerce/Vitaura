@@ -2,15 +2,18 @@ package com.example.vitaura.ui.actions
 
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.vitaura.R
 import com.example.vitaura.databinding.FragmentActionsBinding
+import com.example.vitaura.extensions.Router
 import com.example.vitaura.extensions.viewBinding
 import com.example.vitaura.pojo.Action
 import com.example.vitaura.pojo.Results
 import com.example.vitaura.ui.base.BaseFragment
+import com.example.vitaura.ui.mail.CallbackFragment
 import com.example.vitaura.viewmodel.ActionViewModel
 import org.koin.android.viewmodel.ext.android.sharedViewModel
 
@@ -25,6 +28,17 @@ class ActionsFragment: BaseFragment(R.layout.fragment_actions), OnActionClickLis
         super.onViewCreated(view, savedInstanceState)
         initActionsList()
         actionViewModel.getActions().observe(viewLifecycleOwner, observerActions)
+        layout.incFlower.logInFlowerBtn.setOnClickListener {
+            Router.routeFragment(requireActivity(), CallbackFragment(), R.id.main_container)
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        (requireActivity() as AppCompatActivity)
+            .supportActionBar?.apply {
+                title = "Акции"
+            }
     }
 
     private fun initActionsList() {
@@ -61,6 +75,7 @@ class ActionsFragment: BaseFragment(R.layout.fragment_actions), OnActionClickLis
     }
 
     override fun actionClick(id: String) {
-
+        actionViewModel.actionId = id
+        Router.routeFragment(requireActivity(), ActionFragment(), R.id.main_container)
     }
 }

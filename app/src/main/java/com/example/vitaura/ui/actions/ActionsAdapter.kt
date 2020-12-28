@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.vitaura.databinding.ItemActionBinding
 import com.example.vitaura.pojo.Action
+import com.squareup.picasso.Picasso
 
 class ActionsAdapter: RecyclerView.Adapter<ActionsAdapter.ActionsViewHolder>() {
     private var actions = listOf<Action>()
@@ -19,7 +20,14 @@ class ActionsAdapter: RecyclerView.Adapter<ActionsAdapter.ActionsViewHolder>() {
     inner class ActionsViewHolder(itemViewBind: ItemActionBinding): RecyclerView.ViewHolder(itemViewBind.root){
         private val layout = itemViewBind
         fun bind(action: Action) = with(itemView){
-            println(action.imgUrl)
+            Picasso.get().load(action.imgUrlMin)
+                .into(layout.actionImgMin)
+            layout.imgTitle.text = action.title
+            itemView.setOnClickListener {
+                action.id?.let {
+                    listener?.actionClick(it)
+                }
+            }
         }
     }
 
