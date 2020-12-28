@@ -22,4 +22,5 @@ class RemoteDataSource(private val restDataSource: RetrofitProvider): IDataSourc
     override fun getVideoAlbums(): Observable<ApiVideoAlbums> = restDataSource.getService().getVideoAlbums()
     override fun getVideo(id: String): Observable<ApiVideo> = restDataSource.getService().getVideo(id)
     override fun getAllActions(): Observable<ApiActions> = restDataSource.getService().getActions()
+    override fun getActionById(id: String): Observable<ApiAction> = restDataSource.getService().getActionById(id)
 }

@@ -190,4 +190,13 @@ class Repository(private val remoteDataSource: IDataSource): IRepository {
                 }
             return@map actions
         }
+
+    override fun getActionById(id: String): Observable<Action> = remoteDataSource.getActionById(id)
+        .map {
+            return@map Action(it.data?.id,
+                it.data?.attributes?.title,
+                it.data?.attributes?.body?.value,
+                it.photos?.get(0)?.links?.imageMax?.url,
+                it.photos?.get(0)?.links?.imageMin?.url)
+        }
 }

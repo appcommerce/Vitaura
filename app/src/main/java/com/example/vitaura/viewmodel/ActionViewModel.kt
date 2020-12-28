@@ -33,7 +33,20 @@ class ActionViewModel(private val repository: IRepository): BaseViewModel() {
     }
 
     fun getAction(id: String): LiveData<Results<Action>>{
-
+        repository.getActionById(id)
+            .subscribeOn(scheduler.io())
+            .observeOn(scheduler.ui())
+            .doOnSubscribe {
+                action.value = Results.Loading(null)
+            }
+            .subscribeBy(
+                onNext = {
+                    action.value = Results.Success(it)
+                },
+                onError = {
+                    action.value = Results.Error(it)
+                }
+            ).addTo(subscription)
         return action
     }
 }

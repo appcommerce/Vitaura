@@ -20,7 +20,7 @@ class ActionsAdapter: RecyclerView.Adapter<ActionsAdapter.ActionsViewHolder>() {
     inner class ActionsViewHolder(itemViewBind: ItemActionBinding): RecyclerView.ViewHolder(itemViewBind.root){
         private val layout = itemViewBind
         fun bind(action: Action) = with(itemView){
-            Picasso.get().load(action.imgUrlMin)
+            Picasso.get().load(action.imgUrlMax)
                 .into(layout.actionImgMin)
             layout.imgTitle.text = action.title
             itemView.setOnClickListener {
