@@ -21,9 +21,9 @@ class Repository(private val remoteDataSource: IDataSource): IRepository {
                 }
             }
 
-    override fun getActions(): Observable<List<Action>> = remoteDataSource.getActions()
+    override fun getServiceActions(): Observable<List<ServiceAction>> = remoteDataSource.getServiceActions()
             .map {
-                return@map it.map { action-> Action(action.body,
+                return@map it.map { action-> ServiceAction(action.body,
                         action.fieldImage,
                         action.fieldImage2,
                         action.fieldImagePreview,
@@ -50,7 +50,7 @@ class Repository(private val remoteDataSource: IDataSource): IRepository {
             .map { page->
                 return@map page.pages?.map {
                     Page(it.data?.title,
-                            it.data?.body?.text)
+                            it.data?.body?.text, null)
                 }
             }
 
@@ -179,4 +179,34 @@ class Repository(private val remoteDataSource: IDataSource): IRepository {
                 it.data?.attributes?.youtube?.id)
             }
 
+    override fun getActions(): Observable<List<Action>> = remoteDataSource.getAllActions()
+        .map {
+                val actions = it.data?.map { action->
+                    Action(action.id, action.attributes?.title, action.attributes?.body?.value, null, null)
+                }?.toMutableList() ?: mutableListOf()
+                for (i in actions.indices){
+                    actions[i].imgUrlMin = it.photos?.get(i)?.links?.imageMin?.url
+                    actions[i].imgUrlMax = it.photos?.get(i)?.links?.imageMax?.url
+                }
+            return@map actions
+        }
+
+    override fun getActionById(id: String): Observable<Action> = remoteDataSource.getActionById(id)
+        .map {
+            return@map Action(it.data?.id,
+                it.data?.attributes?.title,
+                it.data?.attributes?.body?.value,
+                it.photos?.get(0)?.links?.imageMax?.url,
+                it.photos?.get(0)?.links?.imageMin?.url)
+        }
+
+    override fun getPage(id: String): Observable<Page> = remoteDataSource.getPage(id)
+        .map {
+            val docs = it.photos?.map { url-> Doc(null, url.links?.image?.url) }?.toMutableList() ?: mutableListOf()
+            val titles = it.data?.relationships?.files?.data?.map{ file-> file.meta?.description } ?: listOf()
+            for (i in titles.indices){
+                docs[i].title = titles[i]
+            }
+            return@map Page(it.data?.attributes?.title, it.data?.attributes?.body?.description, docs)
+        }
 }

@@ -7,7 +7,7 @@ import io.reactivex.Observable
 
 class RemoteDataSource(private val restDataSource: RetrofitProvider): IDataSource{
     override fun getSlides(): Observable<List<ApiSlider>> = restDataSource.getService().getSlides()
-    override fun getActions(): Observable<List<ApiServiceAction>> = restDataSource.getService().getServiceActions()
+    override fun getServiceActions(): Observable<List<ApiServiceAction>> = restDataSource.getService().getServiceActions()
     override fun getServices(): Observable<List<ApiService>> = restDataSource.getService().getServices()
     override fun getPages(): Observable<ApiPages> = restDataSource.getService().getPages()
     override fun getNodeDoctors(): Observable<ApiDoctors> = restDataSource.getService().getNodeDoctors()
@@ -21,4 +21,7 @@ class RemoteDataSource(private val restDataSource: RetrofitProvider): IDataSourc
     override fun getPrices(): Observable<JsonObject> = restDataSource.getService().getPrices()
     override fun getVideoAlbums(): Observable<ApiVideoAlbums> = restDataSource.getService().getVideoAlbums()
     override fun getVideo(id: String): Observable<ApiVideo> = restDataSource.getService().getVideo(id)
+    override fun getAllActions(): Observable<ApiActions> = restDataSource.getService().getActions()
+    override fun getActionById(id: String): Observable<ApiAction> = restDataSource.getService().getActionById(id)
+    override fun getPage(id: String): Observable<ApiPage> = restDataSource.getService().getPage(id)
 }

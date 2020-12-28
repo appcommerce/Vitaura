@@ -6,7 +6,7 @@ import io.reactivex.Observable
 
 interface IDataSource {
     fun getSlides(): Observable<List<ApiSlider>>
-    fun getActions(): Observable<List<ApiServiceAction>>
+    fun getServiceActions(): Observable<List<ApiServiceAction>>
     fun getServices(): Observable<List<ApiService>>
     fun getPages(): Observable<ApiPages>
     fun getNodeDoctors(): Observable<ApiDoctors>
@@ -20,4 +20,7 @@ interface IDataSource {
     fun getPrices(): Observable<JsonObject>
     fun getVideoAlbums(): Observable<ApiVideoAlbums>
     fun getVideo(id: String): Observable<ApiVideo>
+    fun getAllActions(): Observable<ApiActions>
+    fun getActionById(id: String): Observable<ApiAction>
+    fun getPage(id: String): Observable<ApiPage>
 }

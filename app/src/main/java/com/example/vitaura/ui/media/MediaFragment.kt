@@ -8,6 +8,7 @@ import com.example.vitaura.R
 import com.example.vitaura.databinding.FragmentMediaBinding
 import com.example.vitaura.extensions.Router
 import com.example.vitaura.extensions.viewBinding
+import com.example.vitaura.ui.mail.CallbackFragment
 import com.google.android.material.tabs.TabLayout
 
 class MediaFragment: Fragment(R.layout.fragment_media), TabLayout.OnTabSelectedListener {
@@ -15,6 +16,9 @@ class MediaFragment: Fragment(R.layout.fragment_media), TabLayout.OnTabSelectedL
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initMediaTabs()
+        layout.fuckingFlower.logInFlowerBtn.setOnClickListener {
+            Router.routeFragment(requireActivity(), CallbackFragment(), R.id.main_container)
+        }
     }
     private fun initMediaTabs(){
         Router.routeTabFragment(this, MediaPhotoFragment(), R.id.media_container)

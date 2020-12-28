@@ -25,9 +25,8 @@ class MainSliderAdapter: SliderViewAdapter<MainSliderAdapter.SlideHolder>() {
     inner class SlideHolder(itemViewBind: ItemSlideBinding): ViewHolder(itemViewBind.root){
         private val layout = itemViewBind
         fun bind(slider: Slider) = with(itemView){
-            val imageUrl = "${Constants.SERVER_URL}${slider.fieldPhoto3?.split("?")?.get(0)}"
+            val imageUrl = "${Constants.SERVER_URL}${slider.fieldPhoto?.split("?")?.get(0)}"
             layout.titleSlider.text = slider.title
-            layout.bodySlider.text = HtmlCompat.fromHtml(slider.body.orEmpty(), HtmlCompat.FROM_HTML_MODE_LEGACY)
             Picasso.get()
                     .load(imageUrl)
                     .into(layout.imageSlide)
