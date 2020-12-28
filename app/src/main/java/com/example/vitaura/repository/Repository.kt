@@ -50,7 +50,7 @@ class Repository(private val remoteDataSource: IDataSource): IRepository {
             .map { page->
                 return@map page.pages?.map {
                     Page(it.data?.title,
-                            it.data?.body?.text)
+                            it.data?.body?.text, null)
                 }
             }
 
@@ -198,5 +198,15 @@ class Repository(private val remoteDataSource: IDataSource): IRepository {
                 it.data?.attributes?.body?.value,
                 it.photos?.get(0)?.links?.imageMax?.url,
                 it.photos?.get(0)?.links?.imageMin?.url)
+        }
+
+    override fun getPage(id: String): Observable<Page> = remoteDataSource.getPage(id)
+        .map {
+            val docs = it.photos?.map { url-> Doc(null, url.links?.image?.url) }?.toMutableList() ?: mutableListOf()
+            val titles = it.data?.relationships?.files?.data?.map{ file-> file.meta?.description } ?: listOf()
+            for (i in titles.indices){
+                docs[i].title = titles[i]
+            }
+            return@map Page(it.data?.attributes?.title, it.data?.attributes?.body?.description, docs)
         }
 }

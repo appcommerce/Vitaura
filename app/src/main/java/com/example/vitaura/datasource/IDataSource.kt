@@ -22,4 +22,5 @@ interface IDataSource {
     fun getVideo(id: String): Observable<ApiVideo>
     fun getAllActions(): Observable<ApiActions>
     fun getActionById(id: String): Observable<ApiAction>
+    fun getPage(id: String): Observable<ApiPage>
 }

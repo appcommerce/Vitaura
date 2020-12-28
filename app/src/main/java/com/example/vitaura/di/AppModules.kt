@@ -28,4 +28,5 @@ val viewModelsModule = module {
     viewModel { PriceViewModel(get()) }
     viewModel { MediaViewModel(get()) }
     viewModel { ActionViewModel(get()) }
+    viewModel { AboutViewModel(get()) }
 }

@@ -22,4 +22,5 @@ interface IRepository {
     fun getVideo(id: String): Observable<VideoAlbums>
     fun getActions(): Observable<List<Action>>
     fun getActionById(id: String): Observable<Action>
+    fun getPage(id: String): Observable<Page>
 }
