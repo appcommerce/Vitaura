@@ -14,8 +14,8 @@
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/action_img_max"
                 android:scaleType="fitXY"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_width="800dp"
+                android:layout_height="214dp"/>
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/img_title"
                 android:layout_width="250dp"
