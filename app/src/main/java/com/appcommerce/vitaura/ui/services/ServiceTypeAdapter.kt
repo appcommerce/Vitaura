@@ -15,7 +15,7 @@ class ServiceTypeAdapter: RecyclerView.Adapter<ServiceTypeAdapter.ServiceTypeVie
         fun bind(serviceType: ServiceType) = with(itemView){
             layout.name.text = serviceType.type
             layout.servicePic.setImageBitmap(BitmapFactory.decodeResource(resources, serviceType.resId))
-            layout.name.setOnClickListener {
+            itemView.setOnClickListener {
                 serviceClickListener?.getServiceByType(
                     serviceType.aliasType,
                     serviceType.resId,
