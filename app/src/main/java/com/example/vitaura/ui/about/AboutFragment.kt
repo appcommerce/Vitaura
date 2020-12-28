@@ -118,7 +118,7 @@ class AboutFragment: BaseFragment(R.layout.fragment_about), OnActionClickListene
     override fun onTabSelected(tab: TabLayout.Tab?) {
         when(tab?.position){
             0 -> Router.routeTabFragment(this, AboutInfoFragment(), R.id.tab_info_container)
-
+            1 -> Router.routeTabFragment(this, AboutLicenseFragment(), R.id.tab_info_container)
         }
     }
 
