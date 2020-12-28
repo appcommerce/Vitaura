@@ -32,7 +32,7 @@ class VideoFragment: BaseFragment(R.layout.fragment_video) {
             is Results.Success ->{
                 hideLoading()
                 result.data?.let { video->
-                    println(video.youtube_id)
+                    layout.videoTitle.text = video.title
                     layout.player.addYouTubePlayerListener(object : AbstractYouTubePlayerListener(){
                         override fun onReady(youTubePlayer: YouTubePlayer) {
                             video.youtube_id?.let {
