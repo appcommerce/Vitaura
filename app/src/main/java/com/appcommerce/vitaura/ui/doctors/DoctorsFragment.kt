@@ -41,11 +41,13 @@ class DoctorsFragment: BaseFragment(R.layout.fragment_doctors), OnDoctorClickLis
     }
 
     override fun showLoading() {
-
+        layout.loadPrice.visibility = View.VISIBLE
+        layout.doctorsContainer.visibility = View.INVISIBLE
     }
 
     override fun hideLoading() {
-
+        layout.loadPrice.visibility = View.GONE
+        layout.doctorsContainer.visibility = View.VISIBLE
     }
 
     private fun handleDoctors(result: Results<List<NodeDoctor>>){

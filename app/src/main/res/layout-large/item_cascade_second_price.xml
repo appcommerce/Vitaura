@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_margin="5dp"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -17,28 +16,27 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/sub_name"
+            android:id="@+id/name_cascade"
+            android:layout_marginStart="10dp"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:layout_margin="22dp"
-            android:textSize="16sp"
-            tools:text="Консультация"/>
+            android:layout_gravity="center"
+            tools:text="Консультации"
+            android:textSize="18sp"
+            android:fontFamily="@font/roboto_medium_pro"
+            android:textColor="@color/colorPrimaryDark"/>
         <androidx.appcompat.widget.AppCompatCheckBox
-            android:id="@+id/expand_btn"
+            android:id="@+id/show_three_level"
+            android:layout_marginEnd="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="22dp"
-            android:checked="false"
-            android:button="@drawable/expand_btn"/>
+            android:button="@drawable/price_changer"
+            android:layout_gravity="center"/>
     </LinearLayout>
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_service_list"
-        android:visibility="gone"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
+        android:id="@+id/rv_three_level"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:visibility="gone"/>
 </LinearLayout>

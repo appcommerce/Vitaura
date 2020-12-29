@@ -25,7 +25,7 @@
             android:layout_gravity="center"
             android:gravity="center_vertical"
             tools:text="Консультации"
-            android:textSize="12sp"
+            android:textSize="18sp"
             android:fontFamily="@font/roboto_medium_pro"
             android:textColor="@color/colorPrimary"/>
         <androidx.appcompat.widget.AppCompatTextView
@@ -37,7 +37,7 @@
             android:layout_gravity="center"
             android:gravity="end|center_vertical"
             tools:text="2000 рублей"
-            android:textSize="12sp"
+            android:textSize="18sp"
             android:fontFamily="@font/roboto_medium_pro"
             android:textColor="@color/colorPrimary"/>
     </LinearLayout>

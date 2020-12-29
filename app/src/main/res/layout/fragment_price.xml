@@ -9,7 +9,7 @@
         android:layout_height="150dp"
         android:visibility="invisible"
         tools:visibility="visible"
-        android:indeterminateTint="@color/colorPrimary"
+        android:indeterminateTint="@color/colorPrimaryLight"
         android:layout_gravity="center"/>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_price"

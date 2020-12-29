@@ -37,6 +37,12 @@ class DoctorsAdapter: RecyclerView.Adapter<DoctorsAdapter.DoctorsViewHolder>() {
             layout.logInBtn.setOnClickListener {
                 listener?.getCallback()
             }
+            layout.portraitIv.setOnClickListener {
+                listener?.getDoctorById(doctor.id)
+            }
+            layout.nameTv.setOnClickListener {
+                listener?.getDoctorById(doctor.id)
+            }
         }
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DoctorsViewHolder = DoctorsViewHolder(

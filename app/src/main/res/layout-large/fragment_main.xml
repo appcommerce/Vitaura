@@ -17,23 +17,46 @@
             app:expandedTitleMarginStart="100dp"
             app:expandedTitleMarginEnd="200dp"
             android:layout_height="match_parent">
-            <com.smarteist.autoimageslider.SliderView
-                android:id="@+id/main_slider"
-                android:layout_gravity="center_horizontal"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="214dp"
-                app:sliderAutoCycleDirection="back_and_forth"
-                app:sliderAutoCycleEnabled="true"
-                app:sliderIndicatorAnimationDuration="300"
-                app:sliderIndicatorGravity="bottom|center_horizontal"
-                app:sliderIndicatorMargin="15dp"
-                app:sliderIndicatorOrientation="horizontal"
-                app:sliderIndicatorPadding="3dp"
-                app:sliderIndicatorRadius="2dp"
-                app:sliderIndicatorSelectedColor="@color/white"
-                app:sliderIndicatorUnselectedColor="@color/colorPrimary"
-                app:sliderScrollTimeInSec="1"
-                app:sliderStartAutoCycle="false"/>
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <com.smarteist.autoimageslider.SliderView
+                    android:id="@+id/main_slider"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="214dp"
+                    app:sliderAutoCycleDirection="back_and_forth"
+                    app:sliderAutoCycleEnabled="true"
+                    app:sliderIndicatorAnimationDuration="300"
+                    app:sliderIndicatorGravity="bottom|center_horizontal"
+                    app:sliderIndicatorMargin="15dp"
+                    app:sliderIndicatorOrientation="horizontal"
+                    app:sliderIndicatorPadding="3dp"
+                    app:sliderIndicatorRadius="2dp"
+                    app:sliderIndicatorSelectedColor="@color/white"
+                    app:sliderIndicatorUnselectedColor="@color/colorPrimary"
+                    app:sliderScrollTimeInSec="1"
+                    app:sliderStartAutoCycle="false"/>
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:textColor="@color/titleColor"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/roboto_medium_pro"
+                    android:text="@string/message_57"/>
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="44sp"
+                    android:textColor="@color/colorPrimaryLight"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/roboto_medium_pro"
+                    android:text="@string/message_58"/>
+            </LinearLayout>
         </com.google.android.material.appbar.CollapsingToolbarLayout>
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/mainTab"
@@ -41,8 +64,9 @@
             android:layout_height="wrap_content"
             app:tabGravity="fill"
             app:tabIndicatorFullWidth="true"
+            app:tabMinWidth="200dp"
             app:layout_collapseMode="pin"
-            app:tabTextAppearance="@style/TabTextStyle"
+            app:tabTextAppearance="@style/LargeTabTextStyle"
             app:tabIndicatorColor="@color/colorPrimary"
             app:tabSelectedTextColor="@color/titleColor"
             app:tabTextColor="@color/colorPrimary"
