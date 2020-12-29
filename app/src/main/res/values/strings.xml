@@ -37,9 +37,7 @@
     <string name="message_30">Мы свяжемся с Вами\n
         в ближайшее время.</string>
     <string name="message_31">Записаться на прием</string>
-    <string name="message_32">Бережное\n
-        отношение\n
-        к вашей красоте</string>
+    <string name="message_32">Бережное отношение\nк вашей красоте</string>
     <string name="message_33">Оставить отзыв</string>
     <string name="message_34">Подробнее</string>
     <string name="message_35">стоимость консультации</string>
@@ -64,4 +62,6 @@
     <string name="message_54">Выход в сторону Белорусского вокзала, далее по 2-й Брестской улице, затем по Большой Грузинской ул. С Большой Грузинской поворачиваете в Большой Тишинский переулок.</string>
     <string name="message_55">м. Баррикадная</string>
     <string name="message_56">выход в сторону Большой Грузинской улицы. Двигаетесь по ней прямо, далее поворот налево Большой Тишинский переулок. Ориентир - Сбербанк на углу Большого Тишинского переулка.</string>
+    <string name="message_57">клиника эстетической медицины</string>
+    <string name="message_58">Vitaura</string>
 </resources>
