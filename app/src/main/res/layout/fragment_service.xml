@@ -105,7 +105,10 @@
                 app:fontFamily="@font/roboto_medium_pro"
                 android:layout_marginTop="23dp"
                 android:layout_marginStart="20dp" />
-
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_service_price"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
             <include android:id="@+id/incFlower"
                 android:layout_gravity="bottom"
                 layout="@layout/flower_layout"

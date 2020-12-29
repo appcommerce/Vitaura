@@ -86,9 +86,10 @@ class ServiceSubTypeFragment: BaseFragment(R.layout.fragment_service_sub_type), 
 
     }
 
-    override fun getServiceById(serviceTid: String?) {
+    override fun getServiceById(serviceTid: String?, page: String?) {
         serviceTid?.let {
             serviceViewModel.serviceTid = it
+            serviceViewModel.servicePage = page
             Router.routeFragment(requireActivity(), ServiceFragment(), R.id.main_container)
         }
     }

@@ -30,4 +30,22 @@ class PriceViewModel(private val repository: IRepository): BaseViewModel() {
             ).addTo(subscription)
         return prices
     }
+
+    fun getPriceByService(page: String): LiveData<Results<Pair<MutableList<Prices>, MutableList<PricesCascade>>>>{
+        repository.getPriceByService(page)
+            .subscribeOn(scheduler.io())
+            .observeOn(scheduler.ui())
+            .doOnSubscribe {
+                prices.value = Results.Loading(null)
+            }
+            .subscribeBy(
+                onNext = {
+                    prices.value = Results.Success(it)
+                },
+                onError = {
+                    prices.value = Results.Error(it)
+                }
+            ).addTo(subscription)
+        return prices
+    }
 }

@@ -11,8 +11,9 @@ class ServiceAdapter(private val services: List<ServiceSubMenu>, private val lis
         private val layout = itemViewBind
         fun bind(service: ServiceSubMenu) = with(itemView){
             layout.serviceName.text = service.title
+            val servicePage = if(service.link?.startsWith("/services")!!) service.link else "/services${service.link}"
             layout.serviceName.setOnClickListener {
-                listener?.getServiceById(service.tid)
+                listener?.getServiceById(service.tid, servicePage)
             }
         }
     }

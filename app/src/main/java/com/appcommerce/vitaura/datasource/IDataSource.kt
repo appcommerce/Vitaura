@@ -18,6 +18,7 @@ interface IDataSource {
     fun getTaxonomyService(id: String): Observable<ApiTaxonomyService>
     fun getServiceNodeDoctors(id: String): Observable<ApiDoctors>
     fun getPrices(): Observable<JsonObject>
+    fun getPriceByService(page: String): Observable<JsonObject>
     fun getVideoAlbums(): Observable<ApiVideoAlbums>
     fun getVideo(id: String): Observable<ApiVideo>
     fun getAllActions(): Observable<ApiActions>

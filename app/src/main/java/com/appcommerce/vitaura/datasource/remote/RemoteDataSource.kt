@@ -24,4 +24,5 @@ class RemoteDataSource(private val restDataSource: RetrofitProvider): IDataSourc
     override fun getAllActions(): Observable<ApiActions> = restDataSource.getService().getActions()
     override fun getActionById(id: String): Observable<ApiAction> = restDataSource.getService().getActionById(id)
     override fun getPage(id: String): Observable<ApiPage> = restDataSource.getService().getPage(id)
+    override fun getPriceByService(page: String): Observable<JsonObject> = restDataSource.getService().getPriceByService(page)
 }

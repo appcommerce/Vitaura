@@ -34,6 +34,8 @@ interface IRestRequests {
     fun getServiceNodeDoctors(@Query("filter[field_services.id]")id: String): Observable<ApiDoctors>
     @GET("/blocks_for_page/special_links/price.html")
     fun getPrices(): Observable<JsonObject>
+    @GET("/blocks_for_page/special_links/price.html")
+    fun getPriceByService(@Query("page")page: String): Observable<JsonObject>
     @GET("/jsonapi/node/video?filter[status][value]=1")
     fun getVideoAlbums(): Observable<ApiVideoAlbums>
     @GET("/jsonapi/node/video/{id}")

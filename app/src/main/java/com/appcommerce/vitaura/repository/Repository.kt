@@ -209,4 +209,9 @@ class Repository(private val remoteDataSource: IDataSource): IRepository {
             }
             return@map Page(it.data?.attributes?.title, it.data?.attributes?.body?.description, docs)
         }
+
+    override fun getPriceByService(page: String): Observable<Pair<MutableList<Prices>, MutableList<PricesCascade>>> = remoteDataSource.getPriceByService(page)
+        .map {
+            return@map PriceJsonParser.createCascadePrice(it)
+        }
 }

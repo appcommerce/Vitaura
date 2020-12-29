@@ -23,4 +23,5 @@ interface IRepository {
     fun getActions(): Observable<List<Action>>
     fun getActionById(id: String): Observable<Action>
     fun getPage(id: String): Observable<Page>
+    fun getPriceByService(page: String): Observable<Pair<MutableList<Prices>, MutableList<PricesCascade>>>
 }
